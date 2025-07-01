@@ -1,0 +1,49 @@
+Portfolio Blueprint: A Section-by-Section Guide for You
+1. Homepage
+Your Photo: Professional headshot.
+Headline: Let's craft a powerful one based on your resume.
+Option A (Focus on BA): "Business Analyst translating complex requirements into data-driven solutions on AWS and Azure."
+Option B (Focus on Analytics): "Data & Business Analyst specializing in predictive modeling and interactive dashboards to drive strategic decisions."
+Option C (The Hybrid): "MS in Business Analytics & AI candidate with hands-on experience in cloud data pipelines, machine learning, and agile product delivery."
+Sub-headline: A brief 2-3 sentence summary. "I thrive at the intersection of business and technology, converting stakeholder needs into actionable user stories and building end-to-end analytical solutions. My experience spans from AWS data integration and Power BI reporting to deploying NLP models with Python."
+Call-to-Action Buttons: "View My Projects", "My Process", "Download Resume".
+2. Projects: The Heart of Your Portfolio
+This is where you'll shine. We'll transform your three academic projects into interactive, business-focused case studies. Don't just list them; tell their story.
+Project 1: The "Live AI Demo" - Emotion Detection in Tweets
+This is your "wow" factor project. It's tangible and impressive.
+Title: Real-Time Emotion Analysis for Social Media Content
+The Business Problem: Companies need to understand customer sentiment in real-time to manage brand reputation, identify product issues, and gauge marketing campaign success. Manual analysis is impossible at scale.
+The Interactive Element (Your #1 Priority):
+Build a Streamlit App. This is non-negotiable for this project. It's the perfect way to show, not tell.
+Functionality: A simple web page with a text box. A user types in a sentence (e.g., "I'm so frustrated with the new update, it's incredibly slow.") and clicks "Analyze".
+Output: Your app displays the detected emotions (e.g., Anger: 85%, Sadness: 50%, Joy: 5%) using bar charts or labels.
+Deployment: Host it for free on Streamlit Community Cloud and link to it prominently from your portfolio.
+The Write-up: Include sections on the model architecture (Hugging Face transformers), challenges (handling multi-label complexity), and the potential business impact (enabling proactive customer support or market research).
+Project 2: The "Business Storyteller" - SDG-3 Energy Access in Afghanistan
+This project demonstrates your ability to analyze trends and communicate a powerful narrative with data.
+Title: A Decade of Progress: Visualizing Afghanistan's Journey to Energy Access
+The Business Problem: International development agencies and governments need to track progress on key initiatives like the UN's Sustainable Development Goals (SDGs) to allocate resources effectively and measure the impact of policies.
+The Interactive Element:
+Embed an Interactive Tableau or Power BI Dashboard.
+Key Visual: A line chart or an animated map showing the dramatic increase in electricity access from 1.73% to 97.71% over the years. Make it interactive so the user can hover over a year to see the exact percentage.
+Supporting Visuals: Include other charts showing correlations you found or forecasts from your time-series model. Allow filtering by province if your data supports it.
+The Write-up: Frame this as a "Data for Good" project. Explain your regression/time-series methodology and how these forecasts could help organizations plan for future infrastructure needs. This shows social awareness and analytical rigor.
+Project 3: The "Classic Business Case" - Credit Risk Analysis
+This project speaks directly to the finance and banking industries and demonstrates core data science skills.
+Title: Optimizing Credit Risk Assessment with XGBoost at American Express
+The Business Problem: Lenders must accurately predict the likelihood of a borrower defaulting on a loan to minimize financial losses while providing fair access to credit. Traditional models can often be improved.
+The Interactive Element:
+Another Tableau/Power BI Dashboard. Since you list Power BI first on your resume, definitely use it here to prove your skill.
+Dashboard Components:
+Model Comparison: A simple bar chart showing the accuracy/AUC of your XGBoost model vs. the baseline or the CNN model.
+Feature Importance: A chart showing the top 5-10 factors that predict default risk (e.g., credit utilization, income, loan age). This is highly valuable for business users.
+Confusion Matrix: A visual representation of your model's performance (True Positives, False Negatives, etc.).
+The Write-up: Detail your process of feature engineering, hyperparameter tuning, and model evaluation. In your "Results" section, clarify the "11.6% higher accuracy" claim (e.g., "achieved an F1-score of 0.85, which was an 11.6% improvement over the baseline logistic regression model").
+3. "My Process" Page (Your Secret Weapon)
+Instead of a generic "About Me," create a page that visualizes your Business Analysis process. This directly leverages your professional experience.
+Use a visual diagram/flowchart:
+Step 1: Discover & Define: (Icon: people talking) Keywords: Stakeholder Interviews, Requirement Gathering.
+Step 2: Plan & Prioritize: (Icon: a backlog/board) Keywords: User Story Writing, Backlog Grooming, Jira, Azure DevOps.
+Step 3: Develop & Analyze: (Icon: code/gears) Keywords: Python, SQL, AWS Redshift, Data Modeling, ML.
+Step 4: Visualize & Deliver: (Icon: a chart/dashboard) Keywords: Power BI, Tableau, Reporting, Sprint Delivery.
+Under this diagram, briefly describe how you applied this process at Ackerman and Innover Digital, using the metrics from your resume.
