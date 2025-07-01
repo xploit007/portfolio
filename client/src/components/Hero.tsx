@@ -114,7 +114,10 @@ const downloadLR = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg text-slate-600 mb-10 leading-relaxed"
             >
-              I play with data and translate complex datasets into clear, stakeholder-ready stories, engineer ETL pipelines, fine-tune ML algorithms, and craft interactive Power BI dashboards that empower non-technical audiences to make data-driven decisions.
+              I play with data and translate complex datasets into clear, stakeholder-ready stories,
+              <br />
+              engineer ETL pipelines, fine-tune ML algorithms, and craft interactive Power BI dashboards that
+              empower non-technical audiences to make data-driven decisions.
             </motion.p>
           </AnimatedSection>
           
@@ -146,7 +149,7 @@ const downloadLR = () => {
               {/* second row — w-full makes it span the combined width above */}
               <Button
                 onClick={downloadResume}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full whitespace-normal"
               >
                 <i className="fas fa-download mr-2" />
                 Download Resume
@@ -154,7 +157,7 @@ const downloadLR = () => {
               {/* second row — w-full makes it span the combined width above */}
               <Button
                 onClick={downloadLR}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full whitespace-normal"
               >
                 <i className="fas fa-download mr-2" />
                 Download Recommendation Letter
