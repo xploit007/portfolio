@@ -26,10 +26,9 @@ export default function Navigation() {
     { id: 'home', label: 'Home' },
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
-    { id: 'education', label: 'Education' },
-    { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
-    { id: 'process', label: 'Process' },
+    { id: 'education', label: 'Education' },
+ 
   ];
 
   return (
@@ -48,7 +47,7 @@ export default function Navigation() {
             className="font-bold text-xl text-slate-800 cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
-            MG
+            MGN
           </motion.div>
 
           {/* Desktop Navigation */}

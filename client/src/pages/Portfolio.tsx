@@ -12,7 +12,7 @@ import ChatBot from "@/components/ChatBot";
 
 export default function Portfolio() {
   useEffect(() => {
-    document.title = "Mallikarjun Gudumagatte Nagaraja - Business Analyst & Data Scientist";
+    document.title = "Mallikarjun Gudumagatte Nagaraja";
     
     // SEO meta description
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -48,25 +48,25 @@ export default function Portfolio() {
           <Experience />
         </section>
         
+                {/* 6. Projects Section - Interactive project showcases with scrollytelling */}
+        <section id="projects">
+          <Projects />
+        </section>
         {/* 4. Education Section - Academic background and certifications */}
         <section id="education">
           <Education />
         </section>
         
         {/* 5. About Section - Personal story and current focus */}
-        <section id="about">
+        {/* <section id="about">
           <About />
-        </section>
-        
-        {/* 6. Projects Section - Interactive project showcases with scrollytelling */}
-        <section id="projects">
-          <Projects />
-        </section>
+        </section> */}
+      
         
         {/* 7. Process Section - Business Analysis methodology visualization */}
-        <section id="process">
+        {/* <section id="process">
           <Process />
-        </section>
+        </section> */}
         
         {/* Contact Section - Contact form and social links */}
         <section id="contact">

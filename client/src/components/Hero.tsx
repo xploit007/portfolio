@@ -127,7 +127,7 @@ const downloadLR = () => {
               className="inline-flex flex-col gap-4"
             >
               {/* first row */}
-              <div className="flex gap-4">
+              {/* <div className="flex gap-4">
                 <Button
                   onClick={() => scrollToSection('projects')}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
@@ -141,7 +141,7 @@ const downloadLR = () => {
                 >
                   My Process
                 </Button>
-              </div>
+              </div> */}
 
               {/* second row — w-full makes it span the combined width above */}
               <Button

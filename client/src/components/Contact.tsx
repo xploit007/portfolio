@@ -277,7 +277,7 @@ export default function Contact() {
                   </span>
                 </div>
                 <p className="text-sm text-slate-600">
-                  I typically respond within 24 hours during business days.
+                  I typically respond within 24 hours.
                 </p>
               </motion.div>
             </motion.div>
