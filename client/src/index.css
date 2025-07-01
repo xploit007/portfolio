@@ -109,4 +109,17 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .honeycomb {
+    @apply flex flex-wrap gap-4;
+  }
+
+  .hex {
+    @apply relative flex items-center justify-center w-20 h-20 text-center rounded-md transition-transform duration-300;
+    clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+  }
+
+  .honeycomb .hex:nth-child(odd) {
+    margin-top: 1rem;
+  }
 }

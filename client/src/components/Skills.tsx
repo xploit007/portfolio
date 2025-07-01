@@ -1,6 +1,25 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { IconType } from "react-icons";
+import {
+  SiPython,
+  SiR,
+  SiHtml5,
+  SiReact,
+  SiVisualstudiocode,
+  SiJupyter,
+  SiApachehive,
+  SiApachehadoop,
+  SiApachespark,
+  SiGit,
+  SiGithub,
+  SiLinux,
+  SiMicrosoftexcel,
+  SiPowerbi,
+  SiMysql,
+  SiAmazonaws,
+  SiMicrosoftazure,
+} from "react-icons/si";
 import AnimatedSection from "./AnimatedSection";
 
 import MLLogo from "../resources/ml.png";
@@ -11,8 +30,8 @@ import BDSLogo from "../resources/bds.png";
 
 interface Skill {
   name: string;
-  percentage: number;
-  category: string;
+  Icon: IconType;
+  color: string;
 }
 
 interface Certification {
@@ -28,11 +47,23 @@ export default function Skills() {
   });
 
   const skills: Skill[] = [
-    { name: "Python & Machine Learning", percentage: 95, category: "technical" },
-    { name: "Excel & Data Analysis", percentage: 95, category: "methodology" },
-    { name: "Power BI & Tableau", percentage: 95, category: "visualization" },
-    { name: "SQL & Data Modeling", percentage: 92, category: "data" },
-    { name: "AWS & Azure Cloud", percentage: 85, category: "cloud" },
+    { name: "Python", Icon: SiPython, color: "text-yellow-500" },
+    { name: "R", Icon: SiR, color: "text-blue-500" },
+    { name: "HTML CSS JS", Icon: SiHtml5, color: "text-orange-600" },
+    { name: "ReactJS", Icon: SiReact, color: "text-cyan-500" },
+    { name: "Visual Studio", Icon: SiVisualstudiocode, color: "text-indigo-500" },
+    { name: "Jupyter Notebook", Icon: SiJupyter, color: "text-orange-500" },
+    { name: "Hive", Icon: SiApachehive, color: "text-yellow-600" },
+    { name: "Hadoop", Icon: SiApachehadoop, color: "text-blue-600" },
+    { name: "Spark", Icon: SiApachespark, color: "text-orange-600" },
+    { name: "Git", Icon: SiGit, color: "text-red-600" },
+    { name: "GitHub", Icon: SiGithub, color: "text-gray-800" },
+    { name: "Linux", Icon: SiLinux, color: "text-orange-600" },
+    { name: "Excel", Icon: SiMicrosoftexcel, color: "text-green-600" },
+    { name: "Power BI & Tableau", Icon: SiPowerbi, color: "text-yellow-500" },
+    { name: "SQL", Icon: SiMysql, color: "text-blue-500" },
+    { name: "AWS", Icon: SiAmazonaws, color: "text-orange-500" },
+    { name: "Azure", Icon: SiMicrosoftazure, color: "text-blue-700" },
   ];
 
   const certifications: Certification[] = [
@@ -81,29 +112,18 @@ export default function Skills() {
           {/* Skills Grid */}
           <AnimatedSection>
             <div ref={ref}>
-              <h3 className="text-2xl font-semibold text-slate-800 mb-8">
-                Core Skills
-              </h3>
-              <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-slate-800 mb-8">Core Skills</h3>
+              <div className="honeycomb justify-center">
                 {skills.map((skill, i) => (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    className="hex bg-gray-100 dark:bg-gray-800"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: i * 0.05 }}
                   >
-                    <div className="flex justify-between mb-2">
-                      <span className="font-medium text-slate-700">{skill.name}</span>
-                      <span className="text-sm text-slate-600">{skill.percentage}%</span>
-                    </div>
-                    <div className="bg-gray-200 rounded-full h-2">
-                      <motion.div
-                        className="bg-blue-600 h-2 rounded-full"
-                        initial={{ width: "0%" }}
-                        animate={inView ? { width: `${skill.percentage}%` } : { width: "0%" }}
-                        transition={{ duration: 1.5, delay: 0.5 + i * 0.1, ease: "easeOut" }}
-                      />
-                    </div>
+                    <skill.Icon className={`text-3xl ${skill.color}`} />
+                    <span className="sr-only">{skill.name}</span>
                   </motion.div>
                 ))}
               </div>
