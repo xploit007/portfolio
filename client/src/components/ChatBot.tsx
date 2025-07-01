@@ -236,10 +236,9 @@ export default function ChatBot() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute right-20 bottom-0 mb-3 bg-slate-700 text-white px-3 py-2 rounded-full shadow-lg flex items-center gap-2"
+            className="absolute right-20 bottom-0 mb-3 bg-slate-700 text-white px-3 py-2 rounded-lg shadow-lg"
           >
-            <i className="fas fa-comment-dots" />
-            <span className="text-sm">Hi! Need help?</span>
+            <span className="text-sm">Hi! How can I help you?</span>
           </motion.div>
         )}
       </AnimatePresence>
