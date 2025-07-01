@@ -72,7 +72,7 @@ const courseWorkUTD: CourseWork[] = [
     { name: "Big Data & Data Science", icon: "fas fa-database" },
     { name: "Python Programming", icon: "fas fa-chart-line" },
     { name: "C Programming", icon: "fas fa-cloud" },
-    { name: "Obeject Oriented Programming", icon: "fas fa-chart-bar" },
+    { name: "Object Oriented Programming", icon: "fas fa-chart-bar" },
     { name: "Web Programming", icon: "fas fa-calculator" },
     { name: "Data Structures using C++", icon: "fas fa-chart-line" },
     { name: "Cloud Computing", icon: "fas fa-cloud" },
