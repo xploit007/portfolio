@@ -33,39 +33,39 @@ export default function Portfolio() {
       
       {/* Main Content Sections */}
       <main>
-        {/* Hero Section - Professional headshot and introduction */}
+        {/* 1. Hero Section - Professional headshot and introduction */}
         <section id="home">
           <Hero />
         </section>
         
-        {/* Skills Section - Animated skill bars and certifications */}
+        {/* 2. Skills Section - Animated skill bars and certifications */}
         <section id="skills">
           <Skills />
         </section>
         
-        {/* Projects Section - Interactive project showcases with scrollytelling */}
-        <section id="projects">
-          <Projects />
-        </section>
-        
-        {/* Process Section - Business Analysis methodology visualization */}
-        <section id="process">
-          <Process />
-        </section>
-        
-        {/* Experience Section - Professional timeline with achievements */}
+        {/* 3. Experience Section - Professional timeline with achievements */}
         <section id="experience">
           <Experience />
         </section>
         
-        {/* Education Section - Academic background and certifications */}
+        {/* 4. Education Section - Academic background and certifications */}
         <section id="education">
           <Education />
         </section>
         
-        {/* About Section - Personal story and current focus */}
+        {/* 5. About Section - Personal story and current focus */}
         <section id="about">
           <About />
+        </section>
+        
+        {/* 6. Projects Section - Interactive project showcases with scrollytelling */}
+        <section id="projects">
+          <Projects />
+        </section>
+        
+        {/* 7. Process Section - Business Analysis methodology visualization */}
+        <section id="process">
+          <Process />
         </section>
         
         {/* Contact Section - Contact form and social links */}

@@ -27,15 +27,16 @@ This is a modern portfolio website for Mallikarjun Gudumagatte Nagaraja, built a
 ## Key Components
 
 ### Frontend Components
-- **Navigation**: Sticky header with smooth scrolling navigation
+- **Navigation**: Sticky header with smooth scrolling navigation (updated to match new section order)
 - **Hero Section**: Professional introduction with animated profile image
-- **Projects**: Interactive project showcases with live demos and GitHub links
-- **Skills**: Animated skill bars and certification displays
-- **Process**: Visual workflow representation of business analysis methodology
+- **Skills**: Animated skill bars and certification displays with icons
 - **Experience**: Timeline-based professional experience display
 - **Education**: Academic background and certifications
+- **About**: Personal story and current focus areas
+- **Projects**: Interactive project showcases with live demos and GitHub links
+- **Process**: Visual workflow representation of business analysis methodology
 - **Contact**: Interactive contact form with validation
-- **ChatBot**: AI-powered assistance for portfolio navigation
+- **ChatBot**: AI-powered assistance for portfolio navigation with bot icon
 
 ### Backend Components
 - **Router Registration**: Centralized route management in `registerRoutes`
@@ -96,6 +97,8 @@ This is a modern portfolio website for Mallikarjun Gudumagatte Nagaraja, built a
 ```
 Changelog:
 - July 01, 2025. Initial setup
+- July 01, 2025. Updated section flow: Home → Skills → Experience → Education → About → Projects → Process
+- July 01, 2025. Added bot icon to chatbot interface
 ```
 
 ## User Preferences

@@ -194,7 +194,7 @@ export default function ChatBot() {
         <motion.i
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className={`${isOpen ? 'fas fa-times' : 'fas fa-comment'} text-xl`}
+          className={`${isOpen ? 'fas fa-times' : 'fas fa-robot'} text-xl`}
         ></motion.i>
       </motion.button>
     </div>

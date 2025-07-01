@@ -24,10 +24,12 @@ export default function Navigation() {
 
   const navItems = [
     { id: 'home', label: 'Home' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'education', label: 'Education' },
+    { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
     { id: 'process', label: 'Process' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'about', label: 'About' },
   ];
 
   return (
