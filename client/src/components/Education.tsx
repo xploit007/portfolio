@@ -128,9 +128,9 @@ const courseWorkUTD: CourseWork[] = [
                   <p className="text-sm text-slate-600 mb-1">
                     August&nbsp;2023&nbsp;–&nbsp;May&nbsp;2025
                   </p>
-                  <div className="flex items-center text-sm text-slate-600">
+                  {/* <div className="flex items-center text-sm text-slate-600">
                     <i className="fas fa-map-marker-alt mr-2" />
-                  </div>
+                  </div> */}
                 </div>
 
 
@@ -193,9 +193,9 @@ const courseWorkUTD: CourseWork[] = [
                     <p className="text-sm text-slate-600 mb-1">
                       August&nbsp;2019&nbsp;–&nbsp;May&nbsp;2023
                     </p>
-                    <div className="flex items-center text-sm text-slate-600">
+                    {/* <div className="flex items-center text-sm text-slate-600">
                       <i className="fas fa-map-marker-alt mr-2" />
-                    </div>
+                    </div> */}
                   </div>
 
 

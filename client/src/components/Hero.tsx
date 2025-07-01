@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "./AnimatedSection";
-import Headshot from '../resources/Headshot.png';
+import Headshot from '../resources/Headshot1.png';
 import Resume from '../resources/Mallikarjun_GudumagatteNagaraja-resume.pdf';
 import LR from '../resources/RecommendationLetter_Mallikarjun.pdf';
 
