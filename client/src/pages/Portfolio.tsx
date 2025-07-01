@@ -78,27 +78,45 @@ export default function Portfolio() {
       <footer className="bg-slate-900 text-white py-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h3 className="text-2xl font-bold mb-4">Mallikarjun Gudumagatte Nagaraja</h3>
-          <p className="text-gray-300 mb-6">Business Analyst & Data Scientist</p>
+          <p className="text-gray-300 mb-6">Data Story Teller</p>
           
           <div className="flex justify-center space-x-6 mb-8">
-            {/* TODO: Update with actual social media links */}
-            <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
-              <i className="fab fa-linkedin text-2xl"></i>
-            </a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
-              <i className="fab fa-github text-2xl"></i>
-            </a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
-              <i className="fas fa-envelope text-2xl"></i>
-            </a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
-              <i className="fab fa-twitter text-2xl"></i>
-            </a>
-          </div>
+  <a
+    href="https://linkedin.com/in/mallikarjungn/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-300 hover:text-white transition-colors duration-200"
+  >
+    <i className="fab fa-linkedin text-2xl"></i>
+  </a>
+  <a
+    href="https://github.com/xploit007"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-300 hover:text-white transition-colors duration-200"
+  >
+    <i className="fab fa-github text-2xl"></i>
+  </a>
+  <a
+    href="mailto:Mallikarjun.Gudum@gmail.com"
+    className="text-gray-300 hover:text-white transition-colors duration-200"
+  >
+    <i className="fas fa-envelope text-2xl"></i>
+  </a>
+  <a
+    href="https://www.instagram.com/xploited.shots/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-300 hover:text-white transition-colors duration-200"
+  >
+    <i className="fab fa-instagram text-2xl"></i>
+  </a>
+</div>
+
           
           <div className="border-t border-gray-600 pt-6">
             <p className="text-gray-400 text-sm">
-              &copy; 2024 Mallikarjun Gudumagatte Nagaraja. Built with React & Framer Motion.
+              &copy; 2025 Mallikarjun Gudumagatte Nagaraja. Built with React & Framer Motion.
             </p>
           </div>
         </div>

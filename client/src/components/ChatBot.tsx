@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ChatbotICON from "../resources/chatbot-logo.png";
 
 interface Message {
   id: string;
@@ -17,62 +18,57 @@ export default function ChatBot() {
       id: "1",
       text: "Hi! I'm here to help you learn more about Mallikarjun's projects and experience. What would you like to know?",
       isBot: true,
-      timestamp: new Date()
-    }
+      timestamp: new Date(),
+    },
   ]);
   const [inputValue, setInputValue] = useState("");
 
   const quickQuestions = [
     "Tell me about the emotion detection project",
     "What technologies do you use?",
-    "Show me your experience"
+    "Show me your experience",
   ];
 
-  const addMessage = (text: string, isBot: boolean = false) => {
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      text,
-      isBot,
-      timestamp: new Date()
-    };
-    setMessages(prev => [...prev, newMessage]);
+  const addMessage = (text: string, isBot = false) => {
+    setMessages((prev) => [
+      ...prev,
+      { id: Date.now().toString(), text, isBot, timestamp: new Date() },
+    ]);
   };
 
   const handleSendMessage = () => {
-    if (inputValue.trim()) {
-      addMessage(inputValue);
-      setInputValue("");
-      
-      // TODO: Implement backend API call for chatbot response
-      setTimeout(() => {
-        addMessage("Thanks for your question! This chatbot will be connected to an AI service to provide detailed answers about the portfolio.", true);
-      }, 1000);
-    }
+    if (!inputValue.trim()) return;
+    addMessage(inputValue);
+    setInputValue("");
+    setTimeout(() => {
+      addMessage(
+        "Thanks for your question! This chatbot will be connected to an AI service to provide detailed answers about the portfolio.",
+        true
+      );
+    }, 1000);
   };
 
   const handleQuickQuestion = (question: string) => {
     addMessage(question);
-    
-    // TODO: Implement specific responses for quick questions
     setTimeout(() => {
-      let response = "Thanks for asking! This feature will be implemented with an AI chatbot to provide detailed information.";
-      
+      let response =
+        "Thanks for asking! This feature will be implemented with an AI chatbot to provide detailed information.";
       if (question.includes("emotion detection")) {
-        response = "The emotion detection project uses Hugging Face transformers to analyze sentiment in real-time. It's deployed as a Streamlit app and can classify multiple emotions from text input.";
+        response =
+          "The emotion detection project uses Hugging Face transformers to analyze sentiment in real-time. It's deployed as a Streamlit app and can classify multiple emotions from text input.";
       } else if (question.includes("technologies")) {
-        response = "I work with Python, Machine Learning, Power BI, Tableau, AWS, Azure, SQL, and Agile methodologies. Check out the skills section for the complete list!";
+        response =
+          "I work with Python, Machine Learning, Power BI, Tableau, AWS, Azure, SQL, and Agile methodologies. Check out the skills section for the complete list!";
       } else if (question.includes("experience")) {
-        response = "I've worked as a Business Analyst at Ackerman Solutions and Innover Digital, delivering 15+ dashboards and improving processes by 25-40%. Scroll to the experience section for details!";
+        response =
+          "I've worked as a Business Analyst at Ackerman Solutions and Innover Digital, delivering 15+ dashboards and improving processes by 25-40%. Scroll to the experience section for details!";
       }
-      
       addMessage(response, true);
     }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSendMessage();
-    }
+    if (e.key === "Enter") handleSendMessage();
   };
 
   return (
@@ -90,12 +86,19 @@ export default function ChatBot() {
             {/* Header */}
             <div className="bg-blue-600 text-white p-4 flex justify-between items-center">
               <div className="flex items-center">
-                <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
-                  <i className="fas fa-robot text-sm"></i>
+                {/* avatar container */}
+                <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full overflow-hidden mr-3">
+                  <img
+                    src={ChatbotICON}
+                    alt="Chatbot Logo"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h4 className="font-semibold">Portfolio Assistant</h4>
-                  <p className="text-xs opacity-90">Ask me about my projects!</p>
+                  <p className="text-xs opacity-90">
+                    Ask me about my projects!
+                  </p>
                 </div>
               </div>
               <Button
@@ -117,18 +120,24 @@ export default function ChatBot() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`flex ${message.isBot ? 'items-start' : 'justify-end'}`}
+                    className={`flex ${
+                      message.isBot ? "items-start" : "justify-end"
+                    }`}
                   >
                     {message.isBot && (
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                        <i className="fas fa-robot text-white text-sm"></i>
+                      <div className="w-10 h-10 bg-blue-600 rounded-full overflow-hidden mr-3 mt-1 flex-shrink-0">
+                        <img
+                          src={ChatbotICON}
+                          alt="Chatbot Logo"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     )}
                     <div
                       className={`max-w-xs p-3 rounded-lg shadow-sm ${
                         message.isBot
-                          ? 'bg-white text-slate-800'
-                          : 'bg-blue-600 text-white'
+                          ? "bg-white text-slate-800"
+                          : "bg-blue-600 text-white"
                       }`}
                     >
                       <p className="text-sm">{message.text}</p>
@@ -144,16 +153,19 @@ export default function ChatBot() {
                     transition={{ duration: 0.3, delay: 0.5 }}
                     className="flex flex-wrap gap-2 ml-11"
                   >
-                    {quickQuestions.map((question) => (
+                    {quickQuestions.map((q) => (
                       <Button
-                        key={question}
+                        key={q}
                         variant="outline"
                         size="sm"
-                        onClick={() => handleQuickQuestion(question)}
+                        onClick={() => handleQuickQuestion(q)}
                         className="text-xs px-3 py-1 h-auto border-blue-200 text-blue-600 hover:bg-blue-50"
                       >
-                        {question.includes("emotion") ? "Emotion Detection" :
-                         question.includes("technologies") ? "Technologies" : "Experience"}
+                        {q.includes("emotion")
+                          ? "Emotion Detection"
+                          : q.includes("technologies")
+                          ? "Technologies"
+                          : "Experience"}
                       </Button>
                     ))}
                   </motion.div>
@@ -189,13 +201,23 @@ export default function ChatBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+        className="relative w-16 h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden"
       >
-        <motion.i
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className={`${isOpen ? 'fas fa-times' : 'fas fa-robot'} text-xl`}
-        ></motion.i>
+        {isOpen ? (
+          <motion.i
+            animate={{ rotate: 180 }}
+            transition={{ duration: 0.3 }}
+            className="fas fa-times text-xl"
+          />
+        ) : (
+          <motion.img
+            src={ChatbotICON}
+            alt="Chatbot Logo"
+            className="absolute inset-0 w-full h-full object-cover rounded-full"
+            animate={{ rotate: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
       </motion.button>
     </div>
   );

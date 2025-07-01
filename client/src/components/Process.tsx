@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
+import Ackerman from '../resources/Ackerman.png';
+import Innover from '../resources/innover.png';
 
 interface ProcessStep {
   number: string;
@@ -18,7 +20,7 @@ export default function Process() {
       number: "1",
       title: "Discover & Define",
       description: "Stakeholder interviews and requirement gathering to understand business needs",
-      icon: "fas fa-users",
+      icon: "fas fa-search",
       iconBg: "bg-blue-100",
       tags: ["Stakeholder Interviews", "Requirement Gathering"],
       tagColor: "bg-blue-100 text-blue-800"
@@ -27,7 +29,7 @@ export default function Process() {
       number: "2", 
       title: "Plan & Prioritize",
       description: "Creating user stories and managing backlogs for agile delivery",
-      icon: "fas fa-tasks",
+      icon: "fas fa-clipboard-list",
       iconBg: "bg-green-100",
       tags: ["User Stories", "Jira", "Azure DevOps"],
       tagColor: "bg-green-100 text-green-800"
@@ -36,7 +38,7 @@ export default function Process() {
       number: "3",
       title: "Develop & Analyze", 
       description: "Building data pipelines and implementing machine learning solutions",
-      icon: "fas fa-cogs",
+      icon: "fas fa-code",
       iconBg: "bg-purple-100",
       tags: ["Python", "AWS Redshift", "ML Models"],
       tagColor: "bg-purple-100 text-purple-800"
@@ -45,7 +47,7 @@ export default function Process() {
       number: "4",
       title: "Visualize & Deliver",
       description: "Creating dashboards and reports for stakeholder communication",
-      icon: "fas fa-chart-bar", 
+      icon: "fas fa-chart-line", 
       iconBg: "bg-orange-100",
       tags: ["Power BI", "Tableau", "Sprint Delivery"],
       tagColor: "bg-orange-100 text-orange-800"
@@ -134,14 +136,22 @@ export default function Process() {
                 className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
-                    <i className="fas fa-building text-white"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg text-slate-800">Ackerman Solutions</h4>
-                    <p className="text-slate-600 text-sm">Business Analyst</p>
-                  </div>
+                {/* Company Logo */}
+                <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src={Ackerman}
+                    alt="Ackerman Center logo"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
+
+                <div>
+                  <h4 className="font-semibold text-lg text-slate-800">
+                    Ackerman Center for Holocaust Studies
+                  </h4>
+                  <p className="text-slate-600 text-sm">Research Analyst</p>
+                </div>
+              </div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   {/* TODO: Update with actual achievements and metrics */}
                   Applied this process to deliver 15+ Power BI dashboards and reduce manual reporting time by 40% across multiple client engagements.
@@ -173,14 +183,18 @@ export default function Process() {
                 className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
-                    <i className="fas fa-digital-tachograph text-white"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg text-slate-800">Innover Digital</h4>
-                    <p className="text-slate-600 text-sm">Business Analyst</p>
-                  </div>
+                <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src={Innover}
+                    alt="Innover Digital logo"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
+                <div>
+                  <h4 className="font-semibold text-lg text-slate-800">Innover Digital</h4>
+                  <p className="text-slate-600 text-sm">Associate Analyst</p>
+                </div>
+              </div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   {/* TODO: Update with actual achievements and metrics */}
                   Streamlined agile delivery processes, wrote 200+ user stories, and improved sprint velocity by 25% for digital transformation projects.

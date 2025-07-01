@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "./AnimatedSection";
+import UTDLogo from "../resources/utd.png";
+import Reva from "../resources/reva.png";
 
 interface CourseWork {
   name: string;
@@ -21,26 +23,61 @@ interface LearningItem {
 
 export default function Education() {
   // TODO: Update with actual education details
-  const courseWork: CourseWork[] = [
-    { name: "Machine Learning", icon: "fas fa-robot" },
-    { name: "Data Mining", icon: "fas fa-database" },
-    { name: "Predictive Analytics", icon: "fas fa-chart-line" },
+const courseWorkUTD: CourseWork[] = [
+  {
+    name: "Applied Econometrics & Time Series Analysis",
+    icon: "fas fa-chart-line",
+  },
+  {
+    name: "Database Foundations for Business Analytics",
+    icon: "fas fa-database",
+  },
+  {
+    name: "Predictive Analytics for Data Science",
+    icon: "fas fa-bolt",
+  },
+  {
+    name: "Prescriptive Analytics",
+    icon: "fas fa-sliders-h",
+  },
+  {
+    name: "Advanced Statistics for Data Science",
+    icon: "fas fa-calculator",
+  },
+  {
+    name: "Programming for Data Science",
+    icon: "fas fa-code",
+  },
+  {
+    name: "Applied Machine Learning",
+    icon: "fas fa-robot",
+  },
+  {
+    name: "Applied Natural Language Processing",
+    icon: "fas fa-language",
+  },
+  {
+    name: "Big Data",
+    icon: "fas fa-network-wired",
+  },
+  {
+    name: "Causal Analytics & A/B Testing",
+    icon: "fas fa-vials",
+  },
+];
+
+
+  const courseWorkREVA: CourseWork[] = [
+    { name: "Machine Learning & Deep Learning", icon: "fas fa-robot" },
+    { name: "Big Data & Data Science", icon: "fas fa-database" },
+    { name: "Python Programming", icon: "fas fa-chart-line" },
+    { name: "C Programming", icon: "fas fa-cloud" },
+    { name: "Obeject Oriented Programming", icon: "fas fa-chart-bar" },
+    { name: "Web Programming", icon: "fas fa-calculator" },
+    { name: "Data Structures using C++", icon: "fas fa-chart-line" },
     { name: "Cloud Computing", icon: "fas fa-cloud" },
-    { name: "Business Intelligence", icon: "fas fa-chart-bar" },
-    { name: "Statistical Methods", icon: "fas fa-calculator" }
-  ];
-
-  // TODO: Update with actual certifications and dates
-  const certifications: Certification[] = [
-    { name: "AWS Certified Solutions Architect", icon: "fab fa-aws", iconColor: "text-orange-500", year: "2023" },
-    { name: "Microsoft Azure Fundamentals", icon: "fab fa-microsoft", iconColor: "text-blue-600", year: "2023" },
-    { name: "Power BI Data Analyst", icon: "fas fa-chart-bar", iconColor: "text-amber-500", year: "2022" }
-  ];
-
-  const learningItems: LearningItem[] = [
-    { name: "Coursera Data Science Specialization", icon: "fas fa-book" },
-    { name: "Advanced Python for Data Science", icon: "fas fa-code" },
-    { name: "Tableau Advanced Analytics", icon: "fas fa-chart-line" }
+    { name: "Database Management System", icon: "fas fa-chart-bar" },
+    { name: "Theory of Algorithms", icon: "fas fa-calculator" }
   ];
 
   return (
@@ -64,33 +101,44 @@ export default function Education() {
               className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-8 h-full"
             >
               <div className="flex items-center mb-6">
-                <motion.div
-                  whileHover={{ rotate: 10 }}
-                  className="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <i className="fas fa-graduation-cap text-2xl text-white"></i>
-                </motion.div>
+                {/* Circular logo container */}
+                <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
+                  <img
+                    src={UTDLogo}
+                    alt="UT Dallas logo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-800">Master of Science</h3>
-                  <p className="text-blue-600 font-semibold">Business Analytics & Artificial Intelligence</p>
+                  <h3 className="text-xl font-bold text-slate-800">
+                    Master of Science
+                  </h3>
+                  <p className="text-blue-600 font-semibold">
+                    Business Analytics & Artificial Intelligence
+                  </p>
                 </div>
               </div>
+
               
-              <div className="mb-6">
-                {/* TODO: Update with actual university name and location */}
-                <p className="text-slate-700 font-medium mb-2">University Name</p>
-                <p className="text-sm text-slate-600 mb-4">Expected Graduation: 2024</p>
-                <div className="flex items-center text-sm text-slate-600">
-                  <i className="fas fa-map-marker-alt mr-2"></i>
-                  <span>Location</span>
+           {/* University + Period + Location */}
+                <div className="mb-6">
+                  <p className="text-lg font-bold text-slate-800">
+                    The University of Texas at Dallas, Richardson, TX
+                  </p>
+                  <p className="text-sm text-slate-600 mb-1">
+                    August&nbsp;2023&nbsp;–&nbsp;May&nbsp;2025
+                  </p>
+                  <div className="flex items-center text-sm text-slate-600">
+                    <i className="fas fa-map-marker-alt mr-2" />
+                  </div>
                 </div>
-              </div>
+
 
               {/* Key Coursework */}
               <div className="space-y-3">
                 <h4 className="font-semibold text-slate-800">Key Coursework</h4>
                 <div className="grid grid-cols-2 gap-2 text-sm">
-                  {courseWork.map((course, index) => (
+                  {courseWorkUTD.map((course, index) => (
                     <motion.div
                       key={course.name}
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -108,94 +156,69 @@ export default function Education() {
             </motion.div>
           </AnimatedSection>
 
-          {/* Previous Education & Certifications */}
-          <AnimatedSection delay={0.2}>
-            <div className="space-y-6">
+          {/* Previous Education */}
+          <AnimatedSection>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-8 h-full"
+            >
+              <div className="flex items-center mb-6">
+                {/* Circular logo container */}
+                <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
+                  <img
+                    src={Reva}
+                    alt="Reva logo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-800">
+                    Bachelor of Technology
+                  </h3>
+                  <p className="text-blue-600 font-semibold">
+                    Electronics and Communications Engineering
+                  </p>
+                </div>
+              </div>
+
               
-              {/* Undergraduate Degree */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex items-center mb-4">
-                  <motion.div
-                    whileHover={{ rotate: -10 }}
-                    className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4"
-                  >
-                    <i className="fas fa-university text-white"></i>
-                  </motion.div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-800">Bachelor's Degree</h3>
-                    {/* TODO: Update with actual undergraduate field */}
-                    <p className="text-green-600 font-semibold">Engineering/Business</p>
+                  {/* University + Period + Location */}
+                  <div className="mb-6">
+                    <p className="text-lg font-bold text-slate-800">
+                      REVA University, Bengaluru, India
+                    </p>
+                    <p className="text-sm text-slate-600 mb-1">
+                      August&nbsp;2019&nbsp;–&nbsp;May&nbsp;2023
+                    </p>
+                    <div className="flex items-center text-sm text-slate-600">
+                      <i className="fas fa-map-marker-alt mr-2" />
+                    </div>
                   </div>
-                </div>
-                {/* TODO: Update with actual undergraduate details */}
-                <p className="text-slate-600 text-sm mb-2">University Name</p>
-                <p className="text-xs text-slate-500">Graduation Year</p>
-              </motion.div>
 
-              {/* Professional Certifications */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
-              >
-                <h3 className="text-lg font-bold text-slate-800 mb-4">Professional Certifications</h3>
-                <div className="space-y-3">
-                  {certifications.map((cert, index) => (
+
+              {/* Key Coursework */}
+              <div className="space-y-3">
+                <h4 className="font-semibold text-slate-800">Key Coursework</h4>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  {courseWorkREVA.map((course, index) => (
                     <motion.div
-                      key={cert.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      key={course.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.02 }}
-                      className="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer transition-all duration-200"
-                    >
-                      <div className="flex items-center">
-                        <i className={`${cert.icon} ${cert.iconColor} mr-3 text-lg`}></i>
-                        <span className="font-medium text-sm text-slate-700">{cert.name}</span>
-                      </div>
-                      <Badge variant="outline" className="text-xs">
-                        {cert.year}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Continuous Learning */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
-              >
-                <h3 className="text-lg font-bold text-slate-800 mb-4">Continuous Learning</h3>
-                <div className="space-y-2 text-sm">
-                  {learningItems.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
                       viewport={{ once: true }}
                       className="flex items-center hover:bg-white hover:bg-opacity-50 p-2 rounded transition-colors duration-200"
                     >
-                      <i className={`${item.icon} text-purple-600 mr-2`}></i>
-                      <span className="text-slate-700">{item.name}</span>
+                      <i className={`${course.icon} text-blue-600 mr-2 text-xs`}></i>
+                      <span>{course.name}</span>
                     </motion.div>
                   ))}
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </AnimatedSection>
         </div>
       </div>

@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "./AnimatedSection";
+import Headshot from '../resources/Headshot.png';
+import Resume from '../resources/Mallikarjun_GudumagatteNagaraja-resume.pdf';
+import LR from '../resources/RecommendationLetter_Mallikarjun.pdf';
+
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -10,10 +14,28 @@ export default function Hero() {
     }
   };
 
-  const downloadResume = () => {
-    // TODO: Replace with actual resume file path
-    console.log("Download resume functionality to be implemented");
-  };
+const downloadResume = () => {
+  // create a temporary anchor tag
+  console.log("Download resume functionality to be implemented");
+  const link = document.createElement('a');
+  link.href = Resume;
+  link.download = 'Resume-Mallikarjun_Gudumagatte_Nagaraja.pdf'; // the filename that will be downloaded
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+const downloadLR = () => {
+  // create a temporary anchor tag
+  console.log("Download recommendation letter functionality to be implemented");
+  const link = document.createElement('a');
+  link.href = LR;
+  link.download = 'Recommendation-Mallikarjun_Gudumagatte_Nagaraja.pdf'; // the filename that will be downloaded
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 
   return (
     <div className="min-h-screen flex items-center gradient-bg pt-20">
@@ -34,7 +56,7 @@ export default function Hero() {
                 {/* TODO: Replace with actual professional headshot */}
                 {/* Placeholder using a professional stock image */}
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400" 
+                  src={Headshot} 
                   alt="Mallikarjun Gudumagatte Nagaraja - Professional Headshot" 
                   className="w-80 h-80 rounded-full object-cover border-4 border-white shadow-2xl transition-all duration-300"
                 />
@@ -69,24 +91,22 @@ export default function Hero() {
               transition={{ duration: 0.8 }}
               className="text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight"
             >
-              {/* TODO: Update with actual name */}
-              Mallikarjun<br />
+              Mallikarjun (Arjun)<br />
               <span className="text-gradient">Gudumagatte Nagaraja</span>
             </motion.h1>
           </AnimatedSection>
-          
+
           <AnimatedSection delay={0.2}>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl lg:text-2xl text-slate-600 mb-8 font-medium"
+              className="text-xl lg:text-2xl text-slate-600 mb-4 font-medium"
             >
-              {/* Using Option C from blueprint: The Hybrid approach */}
-              MS in Business Analytics & AI candidate with hands-on experience in cloud data pipelines, machine learning, and agile product delivery.
+              MS in Business Analytics &amp; AI
             </motion.h2>
           </AnimatedSection>
-          
+
           <AnimatedSection delay={0.4}>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -94,7 +114,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg text-slate-600 mb-10 leading-relaxed"
             >
-              I thrive at the intersection of business and technology, converting stakeholder needs into actionable user stories and building end-to-end analytical solutions. My experience spans from AWS data integration and Power BI reporting to deploying NLP models with Python.
+              I play with data and translate complex datasets into clear, stakeholder-ready stories, engineer ETL pipelines, fine-tune ML algorithms, and craft interactive Power BI dashboards that empower non-technical audiences to make data-driven decisions.
             </motion.p>
           </AnimatedSection>
           
@@ -104,30 +124,45 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="inline-flex flex-col gap-4"
             >
-              <Button 
-                onClick={() => scrollToSection('projects')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-              >
-                View My Projects
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => scrollToSection('process')}
-                className="border-2 border-blue-600 text-blue-600 px-8 py-4 text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-200"
-              >
-                My Process
-              </Button>
-              <Button 
-                variant="ghost"
+              {/* first row */}
+              <div className="flex gap-4">
+                <Button
+                  onClick={() => scrollToSection('projects')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                >
+                  View My Projects
+                </Button>
+
+                <Button
+                  onClick={() => scrollToSection('process')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                >
+                  My Process
+                </Button>
+              </div>
+
+              {/* second row — w-full makes it span the combined width above */}
+              <Button
                 onClick={downloadResume}
-                className="text-slate-600 hover:text-blue-600 font-semibold px-8 py-4 text-lg border border-gray-300 hover:border-blue-600 transition-all duration-200"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               >
-                <i className="fas fa-download mr-2"></i>Download Resume
+                <i className="fas fa-download mr-2" />
+                Download Resume
+              </Button>
+              {/* second row — w-full makes it span the combined width above */}
+              <Button
+                onClick={downloadLR}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              >
+                <i className="fas fa-download mr-2" />
+                Download Recommendation Letter
               </Button>
             </motion.div>
           </AnimatedSection>
+
+
         </div>
       </div>
 

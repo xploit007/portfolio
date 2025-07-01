@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "./AnimatedSection";
+import Ackerman from '../resources/Ackerman.png';
+import Innover from '../resources/innover.png';
+
 
 interface Experience {
   id: string;
@@ -14,6 +17,7 @@ interface Experience {
     color: string;
   }>;
   technologies: string[];
+  companyIcon: string;
   techColor: string;
 }
 
@@ -22,30 +26,32 @@ export default function Experience() {
   const experiences: Experience[] = [
     {
       id: "ackerman",
-      title: "Business Analyst",
-      company: "Ackerman Solutions",
-      period: "2023 - Present",
-      description: "Led cross-functional teams in delivering data-driven business solutions, specializing in Power BI dashboard development and stakeholder requirement analysis.",
+      title: "Research Analyst",
+      company: "Ackerman Center for Holocaust Studies",
+      period: "June 2024 - May 2025",
+      description: "Assisted researchers to tell data-driven stories via Power BI dashboards.",
       achievements: [
         { value: "15+", label: "Dashboards Delivered", color: "text-blue-600" },
         { value: "40%", label: "Time Reduction", color: "text-green-600" },
         { value: "100+", label: "User Stories", color: "text-purple-600" }
       ],
-      technologies: ["Power BI", "Stakeholder Management", "Requirements Analysis", "Data Visualization"],
+      technologies: ["Python", "Power BI", "Web Scraping", "Data Cleaning", "Requirements Analysis", "Data Visualization"],
+      companyIcon: Ackerman,
       techColor: "bg-blue-100 text-blue-800"
     },
     {
       id: "innover",
-      title: "Business Analyst", 
+      title: "Associate Analyst", 
       company: "Innover Digital",
-      period: "2022 - 2023",
-      description: "Drove agile transformation initiatives and optimized sprint delivery processes for digital transformation projects across multiple client portfolios.",
+      period: "April 2022 - June 2023",
+      description: "Bridged business and technical teams by converting requirements into Azure DevOps stories and crafting Power BI dashboards.",
       achievements: [
         { value: "200+", label: "User Stories", color: "text-green-600" },
         { value: "25%", label: "Sprint Velocity ↑", color: "text-amber-600" },
         { value: "5", label: "Client Projects", color: "text-purple-600" }
       ],
-      technologies: ["Agile/Scrum", "Jira", "Azure DevOps", "Sprint Planning"],
+      technologies: ["Python", "SQL", "ETL Pipelines", "Stakeholder Management", "Azure DevOps", "Requirements Gathering"],
+      companyIcon: Innover,
       techColor: "bg-green-100 text-green-800"
     }
     // TODO: Add more experience entries as needed
@@ -85,12 +91,25 @@ export default function Experience() {
                     className="bg-white rounded-xl shadow-lg p-8 transition-all duration-300"
                   >
                     {/* Header */}
-                    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-slate-800">{experience.title}</h3>
-                        <p className="text-blue-600 font-semibold text-lg">{experience.company}</p>
+                    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-4">
+                      <div className="flex items-center mb-4 lg:mb-0">
+                        {/* Company Logo */}
+                        <img
+                          src={experience.companyIcon}
+                          alt={`${experience.company} logo`}
+                          className="w-12 h-12 object-contain mr-4"
+                        />
+                        <div>
+                          <h3 className="text-xl font-bold text-slate-800">
+                            {experience.title}
+                          </h3>
+                          <p className="text-blue-600 font-semibold text-lg">
+                            {experience.company}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex items-center text-slate-600 text-sm mt-2 lg:mt-0">
+
+                      <div className="flex items-center text-slate-600 text-sm">
                         <i className="fas fa-calendar-alt mr-2"></i>
                         {experience.period}
                       </div>
@@ -138,19 +157,6 @@ export default function Experience() {
           </div>
 
           {/* Placeholder for Additional Experience */}
-          <AnimatedSection delay={0.6}>
-            <div className="relative timeline-item pl-20 mt-12">
-              <div className="absolute -left-2 top-4 w-4 h-4 bg-gray-400 border-2 border-white rounded-full shadow-lg"></div>
-              <div className="bg-white rounded-xl shadow-lg p-8 border-2 border-dashed border-gray-300">
-                <div className="text-center">
-                  <i className="fas fa-plus-circle text-3xl text-gray-400 mb-3"></i>
-                  <h3 className="text-lg font-semibold text-gray-600 mb-2">Additional Experience</h3>
-                  <p className="text-gray-500 text-sm">Previous roles and internships can be added here</p>
-                  {/* TODO: Add more experience entries as career progresses */}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
         </div>
       </div>
     </section>
