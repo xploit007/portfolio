@@ -10,7 +10,7 @@
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/public -r https://github.com/xploit007/portfolio.git"
+    "deploy": "gh-pages -d dist"
   },
   "homepage": "https://xploit007.github.io/portfolio/",
   "dependencies": {
