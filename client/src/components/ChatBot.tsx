@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,12 +22,22 @@ export default function ChatBot() {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const quickQuestions = [
     "Tell me about the emotion detection project",
     "What technologies do you use?",
     "Show me your experience",
   ];
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWelcome(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) setShowWelcome(false);
+  }, [isOpen]);
 
   const addMessage = (text: string, isBot = false) => {
     setMessages((prev) => [
@@ -84,14 +94,14 @@ export default function ChatBot() {
             className="absolute bottom-20 right-0 w-80 h-96 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200"
           >
             {/* Header */}
-            <div className="bg-blue-600 text-white p-4 flex justify-between items-center">
+            <div className="bg-slate-700 text-white p-4 flex justify-between items-center">
               <div className="flex items-center">
                 {/* avatar container */}
                 <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full overflow-hidden mr-3">
                   <img
                     src={ChatbotICON}
                     alt="Chatbot Logo"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div>
@@ -125,11 +135,11 @@ export default function ChatBot() {
                     }`}
                   >
                     {message.isBot && (
-                      <div className="w-10 h-10 bg-blue-600 rounded-full overflow-hidden mr-3 mt-1 flex-shrink-0">
+                      <div className="w-10 h-10 bg-slate-700 rounded-full overflow-hidden mr-3 mt-1 flex-shrink-0">
                         <img
                           src={ChatbotICON}
                           alt="Chatbot Logo"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     )}
@@ -186,7 +196,7 @@ export default function ChatBot() {
                 <Button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim()}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 h-auto"
+                  className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 h-auto"
                 >
                   <i className="fas fa-paper-plane text-sm"></i>
                 </Button>
@@ -201,7 +211,7 @@ export default function ChatBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="relative w-16 h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden"
+        className="relative w-16 h-16 bg-slate-700 hover:bg-slate-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden"
       >
         {isOpen ? (
           <motion.i
@@ -213,12 +223,26 @@ export default function ChatBot() {
           <motion.img
             src={ChatbotICON}
             alt="Chatbot Logo"
-            className="absolute inset-0 w-full h-full object-cover rounded-full"
+            className="absolute inset-0 w-full h-full object-contain rounded-full"
             animate={{ rotate: 0 }}
             transition={{ duration: 0.3 }}
           />
         )}
       </motion.button>
+
+      <AnimatePresence>
+        {showWelcome && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="absolute right-20 bottom-0 mb-3 bg-slate-700 text-white px-3 py-2 rounded-full shadow-lg flex items-center gap-2"
+          >
+            <i className="fas fa-comment-dots" />
+            <span className="text-sm">Hi! Need help?</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
