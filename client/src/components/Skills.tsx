@@ -1,13 +1,19 @@
-import { useState } from "react";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import AnimatedSection from "./AnimatedSection";
 
 import MLLogo from "../resources/ml.png";
-import AzureLogo from "../resources/azure.png";
-import AWSLogo from "../resources/aws.png";
 import DataMiningLogo from "../resources/datamining.png";
 import BDSLogo from "../resources/bds.png";
+
+import {
+  VisualStudioLogo24Regular,
+  ExcelLogo24Regular,
+  PowerBILogo24Regular,
+  AzureLogo24Regular,
+  Cloud24Regular,
+} from "@fluentui/react-icons";
 
 interface Skill {
   name: string;
@@ -17,7 +23,7 @@ interface Skill {
 
 interface Certification {
   name: string;
-  iconSrc: string;
+  icon: ReactNode;
   link: string;
 }
 
@@ -38,29 +44,37 @@ export default function Skills() {
   const certifications: Certification[] = [
     {
       name: "AWS Certified Developer – Associate",
-      iconSrc: AWSLogo,
+      icon: <Cloud24Regular className="w-10 h-10" />,
       link: "https://www.credly.com/badges/4766e333-f070-4658-b8fa-14fc4bded7f8/linked_in_profile",
     },
     {
       name: "Microsoft Certified: Azure Fundamentals",
-      iconSrc: AzureLogo,
+      icon: <AzureLogo24Regular className="w-10 h-10" />,
       link: "https://www.credly.com/badges/9bbb657b-bec8-46c3-b076-f9f617a3b575/linked_in_profile",
     },
     {
       name: "Graduate Certificate in Applied Machine Learning",
-      iconSrc: MLLogo,
+      icon: <img src={MLLogo} alt="Machine Learning" className="w-10 h-10 object-contain" />,
       link: "https://drive.google.com/file/d/1UUV8EemoeEi4A2SBqcfeZvxN2fdTtWOp/view?usp=sharing",
     },
     {
       name: "Graduate Certificate in Business Intelligence & Data Mining",
-      iconSrc: DataMiningLogo,
+      icon: <img src={DataMiningLogo} alt="Business Intelligence" className="w-10 h-10 object-contain" />,
       link: "https://drive.google.com/file/d/1F-qWCgeBiK8awBizxHduBc8_ln0DKQea/view?usp=sharing",
     },
     {
       name: "Graduate Certificate in Business Decision Sciences",
-      iconSrc: BDSLogo,
+      icon: <img src={BDSLogo} alt="Business Decision Sciences" className="w-10 h-10 object-contain" />,
       link: "https://drive.google.com/file/d/1Efy5CkA-Oeics5jsu6KOTPcILfDhta-Y/view?usp=sharing",
     },
+  ];
+
+  const tools = [
+    { name: "Visual Studio Code", icon: <VisualStudioLogo24Regular className="w-8 h-8" /> },
+    { name: "Microsoft Excel", icon: <ExcelLogo24Regular className="w-8 h-8" /> },
+    { name: "Power BI", icon: <PowerBILogo24Regular className="w-8 h-8" /> },
+    { name: "Amazon AWS", icon: <Cloud24Regular className="w-8 h-8" /> },
+    { name: "Microsoft Azure", icon: <AzureLogo24Regular className="w-8 h-8" /> },
   ];
 
   return (
@@ -125,11 +139,7 @@ export default function Skills() {
                     transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                     className="flex items-center space-x-6"
                   >
-                    <img
-                      src={cert.iconSrc}
-                      alt={cert.name}
-                      className="w-10 h-10 object-contain"
-                    />
+                    {cert.icon}
                     <a
                       href={cert.link}
                       target="_blank"
@@ -141,6 +151,26 @@ export default function Skills() {
                   </motion.li>
                 ))}
               </ul>
+
+              <h3 className="text-2xl font-semibold text-slate-800 mt-12 mb-8">
+                Tools
+              </h3>
+              <div className="grid grid-cols-3 gap-6">
+                {tools.map((tool, i) => (
+                  <motion.div
+                    key={tool.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
+                    className="flex flex-col items-center"
+                  >
+                    {tool.icon}
+                    <span className="text-sm text-slate-600 mt-2 text-center">
+                      {tool.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </AnimatedSection>
 
