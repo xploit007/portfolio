@@ -120,7 +120,7 @@ export default function Skills() {
                       alt={skill.name}
                       className="w-14 h-14 object-contain mb-2"
                     />
-                    <span className="text-sm font-medium text-slate-700 whitespace-nowrap">
+                    <span className="text-sm font-medium text-slate-700">
                       {skill.name}
                     </span>
                   </motion.div>
@@ -153,7 +153,7 @@ export default function Skills() {
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg text-slate-700 hover:underline whitespace-nowrap"
+                      className="text-lg text-slate-700 hover:underline"
                     >
                       {cert.name}
                     </a>

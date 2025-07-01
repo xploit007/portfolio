@@ -120,12 +120,12 @@ const downloadLR = () => {
           
           {/* Call-to-Action Buttons */}
           <AnimatedSection delay={0.6}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="inline-flex flex-col gap-4"
-            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-col gap-4 w-full"
+              >
               {/* first row */}
               {/* <div className="flex gap-4">
                 <Button
@@ -146,7 +146,7 @@ const downloadLR = () => {
               {/* second row — w-full makes it span the combined width above */}
               <Button
                 onClick={downloadResume}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full"
               >
                 <i className="fas fa-download mr-2" />
                 Download Resume
@@ -154,7 +154,7 @@ const downloadLR = () => {
               {/* second row — w-full makes it span the combined width above */}
               <Button
                 onClick={downloadLR}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full"
               >
                 <i className="fas fa-download mr-2" />
                 Download Recommendation Letter
