@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,7 @@ export default function ChatBot() {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [showWelcome, setShowWelcome] = useState(true);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const quickQuestions = [
     "Tell me about the emotion detection project",
@@ -38,6 +39,12 @@ export default function ChatBot() {
   useEffect(() => {
     if (isOpen) setShowWelcome(false);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  }, [messages, isOpen]);
 
   const addMessage = (text: string, isBot = false) => {
     setMessages((prev) => [
@@ -88,7 +95,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="absolute bottom-20 right-0 w-80 h-96 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200"
+            className="absolute bottom-20 right-0 w-96 h-96 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200"
           >
             {/* Header */}
             <div className="bg-slate-700 text-white p-4 flex justify-between items-center">
@@ -119,7 +126,7 @@ export default function ChatBot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto bg-gray-50 h-64">
+            <div ref={messagesEndRef} className="flex-1 p-4 overflow-y-auto bg-gray-50 h-64">
               <div className="space-y-4">
                 {messages.map((message) => (
                   <motion.div
@@ -188,7 +195,7 @@ export default function ChatBot() {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask me anything..."
-                  className="flex-1 text-sm"
+                  className="flex-1 text-sm h-12"
                 />
                 <Button
                   onClick={handleSendMessage}
