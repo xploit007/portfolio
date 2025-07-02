@@ -238,7 +238,11 @@ export default function ChatBot() {
             exit={{ opacity: 0, y: 10 }}
             className="absolute right-20 bottom-0 mb-3 bg-slate-700 text-white px-3 py-2 rounded-lg shadow-lg"
           >
-            <span className="text-sm">Hi! How can I help you?</span>
+            <span className="text-sm">
+              Hi, welcome
+              <br />
+              How can I help you?
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
