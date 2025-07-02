@@ -46,35 +46,32 @@ export default function ChatBot() {
     ]);
   };
 
+  const sendMessage = async (text: string) => {
+    addMessage(text);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text }),
+      });
+      const data = await res.json();
+      if (data?.message) {
+        addMessage(data.message, true);
+      }
+    } catch (err) {
+      addMessage("Sorry, I couldn't get a response.", true);
+    }
+  };
+
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
-    addMessage(inputValue);
+    const text = inputValue;
     setInputValue("");
-    setTimeout(() => {
-      addMessage(
-        "Thanks for your question! This chatbot will be connected to an AI service to provide detailed answers about the portfolio.",
-        true
-      );
-    }, 1000);
+    sendMessage(text);
   };
 
   const handleQuickQuestion = (question: string) => {
-    addMessage(question);
-    setTimeout(() => {
-      let response =
-        "Thanks for asking! This feature will be implemented with an AI chatbot to provide detailed information.";
-      if (question.includes("emotion detection")) {
-        response =
-          "The emotion detection project uses Hugging Face transformers to analyze sentiment in real-time. It's deployed as a Streamlit app and can classify multiple emotions from text input.";
-      } else if (question.includes("technologies")) {
-        response =
-          "I work with Python, Machine Learning, Power BI, Tableau, AWS, Azure, SQL, and Agile methodologies. Check out the skills section for the complete list!";
-      } else if (question.includes("experience")) {
-        response =
-          "I've worked as a Business Analyst at Ackerman Solutions and Innover Digital, delivering 15+ dashboards and improving processes by 25-40%. Scroll to the experience section for details!";
-      }
-      addMessage(response, true);
-    }, 1000);
+    sendMessage(question);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
