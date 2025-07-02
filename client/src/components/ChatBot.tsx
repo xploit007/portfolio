@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,7 @@ export default function ChatBot() {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [showWelcome, setShowWelcome] = useState(true);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const quickQuestions = [
     "Tell me about the emotion detection project",
@@ -38,6 +39,10 @@ export default function ChatBot() {
   useEffect(() => {
     if (isOpen) setShowWelcome(false);
   }, [isOpen]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const addMessage = (text: string, isBot = false) => {
     setMessages((prev) => [
@@ -177,6 +182,7 @@ export default function ChatBot() {
                     ))}
                   </motion.div>
                 )}
+                <div ref={messagesEndRef} />
               </div>
             </div>
 
