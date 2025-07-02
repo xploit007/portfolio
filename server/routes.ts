@@ -63,7 +63,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // use storage to perform CRUD operations on the storage interface
   // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
 
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error("OPENAI_API_KEY is not set");
+  }
+  const openai = new OpenAI({ apiKey });
 
   app.post("/api/chat", async (req: Request, res: Response) => {
     const message: string | undefined = req.body?.message;
@@ -82,6 +86,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const response = completion.choices[0]?.message?.content || "";
       res.json({ message: response });
     } catch (err) {
+      console.error("OpenAI request failed", err);
       res.status(500).json({ message: "Failed to fetch response" });
     }
   });
