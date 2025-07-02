@@ -96,7 +96,6 @@ export default function ChatBot() {
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
             className="absolute bottom-20 right-0 w-96 h-96 bg-white rounded-xl shadow-2xl border border-gray-200 flex flex-col"
-            style={{ paddingBottom: "calc(5rem + env(safe-area-inset-bottom))" }}
           >
             {/* Header */}
             <div className="bg-slate-700 text-white p-4 flex justify-between items-center">
@@ -192,7 +191,7 @@ export default function ChatBot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-200 bg-white fixed bottom-0 left-0 right-0 z-50">
+            <div className="p-4 border-t border-gray-200 bg-white">
               <div className="flex space-x-2">
                 <Input
                   value={inputValue}
