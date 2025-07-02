@@ -95,7 +95,8 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="absolute bottom-20 right-0 w-96 h-96 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200"
+            className="absolute bottom-20 right-0 w-96 h-96 bg-white rounded-xl shadow-2xl border border-gray-200 flex flex-col"
+            style={{ paddingBottom: "calc(5rem + env(safe-area-inset-bottom))" }}
           >
             {/* Header */}
             <div className="bg-slate-700 text-white p-4 flex justify-between items-center">
@@ -126,7 +127,10 @@ export default function ChatBot() {
             </div>
 
             {/* Messages */}
-            <div ref={messagesEndRef} className="flex-1 p-4 overflow-y-auto bg-gray-50 h-64">
+            <div
+              ref={messagesEndRef}
+              className="flex-1 p-4 overflow-y-auto bg-gray-50"
+            >
               <div className="space-y-4">
                 {messages.map((message) => (
                   <motion.div
@@ -188,7 +192,7 @@ export default function ChatBot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-200 bg-white">
+            <div className="p-4 border-t border-gray-200 bg-white fixed bottom-0 left-0 right-0 z-50">
               <div className="flex space-x-2">
                 <Input
                   value={inputValue}
