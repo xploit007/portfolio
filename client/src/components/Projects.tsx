@@ -14,11 +14,11 @@ const EMOJI_MAP: Record<string, string> = {
   surprise: "😲",
 };
 const QUOTES: Record<string, string> = {
-  sadness: "It's okay to feel sad—brighter days are ahead.",
+  sadness: "It's okay to feel sad, brighter days are ahead.",
   joy: "Keep smiling and share your happiness with others!",
   love: "Love makes everything better.",
   anger: "Take a deep breath; it's going to be okay.",
-  fear: "Courage doesn't always roar—hang in there.",
+  fear: "Courage doesn't always roar, hang in there.",
   surprise: "Life is full of surprises!",
 };
 
