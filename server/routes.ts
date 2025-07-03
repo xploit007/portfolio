@@ -2,6 +2,8 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import OpenAI from "openai";
+import { execFileSync } from "child_process";
+import path from "path";
 
 const profileInfo = `You are an AI assistant representing Mallikarjun Gudumagatte Nagaraja (address him as Mallikarjun). Use only the following details to answer questions.
 
@@ -88,6 +90,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (err) {
       console.error("OpenAI request failed", err);
       res.status(500).json({ message: "Failed to fetch response" });
+    }
+  });
+
+  app.post("/api/emotion", (req: Request, res: Response) => {
+    const text: string | undefined = req.body?.text;
+    if (!text) {
+      return res.status(400).json({ message: "text required" });
+    }
+    try {
+      const script = path.resolve(import.meta.dirname, "emotion_service.py");
+      const output = execFileSync("python3", [script, text], { encoding: "utf-8" });
+      const data = JSON.parse(output);
+      res.json(data);
+    } catch (err) {
+      console.error("Emotion service failed", err);
+      res.status(500).json({ message: "Failed to analyze emotion" });
     }
   });
 

@@ -1,7 +1,69 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "./AnimatedSection";
+
+const EMOTIONS = ["sadness", "joy", "love", "anger", "fear", "surprise"] as const;
+
+function EmotionDemo() {
+  const [text, setText] = useState("I'm so excited about this new project!");
+  const [results, setResults] = useState<Record<string, number> | null>(null);
+  const analyze = async () => {
+    setResults(null);
+    try {
+      const res = await fetch("/api/emotion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const data = await res.json();
+      if (data) {
+        const counts: Record<string, number> = {};
+        for (const label of Object.values<string>(data)) {
+          counts[label] = (counts[label] || 0) + 1;
+        }
+        setResults(counts);
+      }
+    } catch (err) {
+      console.error("Failed to analyze", err);
+    }
+  };
+
+  return (
+    <div className="w-full max-w-md">
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h4 className="font-semibold text-slate-800 mb-4">Try the Demo</h4>
+        <textarea
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 text-sm"
+          rows={3}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <Button onClick={analyze} className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+          Analyze Emotions
+        </Button>
+        {results && (
+          <div className="mt-4 space-y-2">
+            {EMOTIONS.map((emo) => {
+              const val = results[emo] || 0;
+              const pct = (val / 6) * 100;
+              return (
+                <div key={emo} className="flex justify-between items-center">
+                  <span className="text-sm capitalize">{emo}</span>
+                  <div className="w-1/2 bg-gray-200 rounded-full h-2">
+                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${pct}%` }}></div>
+                  </div>
+                  <span className="text-sm font-medium">{Math.round(pct)}%</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 interface Project {
   id: string;
@@ -101,43 +163,7 @@ export default function Projects() {
     switch (project.id) {
       case "emotion-detection":
         return (
-          <div className="w-full max-w-md">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h4 className="font-semibold text-slate-800 mb-4">Try the Demo</h4>
-              <textarea 
-                className="w-full p-3 border border-gray-300 rounded-lg mb-4 text-sm"
-                placeholder="Enter text to analyze emotions..."
-                rows={3}
-                defaultValue="I'm so excited about this new project!"
-              />
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                Analyze Emotions
-              </Button>
-              <div className="mt-4 space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Joy</span>
-                  <div className="w-1/2 bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-500 h-2 rounded-full" style={{width: '75%'}}></div>
-                  </div>
-                  <span className="text-sm font-medium">75%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Excitement</span>
-                  <div className="w-1/2 bg-gray-200 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{width: '65%'}}></div>
-                  </div>
-                  <span className="text-sm font-medium">65%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Neutral</span>
-                  <div className="w-1/2 bg-gray-200 rounded-full h-2">
-                    <div className="bg-gray-500 h-2 rounded-full" style={{width: '25%'}}></div>
-                  </div>
-                  <span className="text-sm font-medium">25%</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <EmotionDemo />
         );
       
       case "afghanistan-energy":
