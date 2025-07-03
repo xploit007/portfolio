@@ -17,7 +17,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! I'm here to help you learn more about Mallikarjun's projects and experience. What would you like to know?",
+      text: "Hi! I'm Mallikarjun's KT bot. Ask me about his background or projects!",
       isBot: true,
       timestamp: new Date(),
     },
