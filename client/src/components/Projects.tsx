@@ -5,12 +5,32 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "./AnimatedSection";
 
 const EMOTIONS = ["sadness", "joy", "love", "anger", "fear", "surprise"] as const;
+const EMOJI_MAP: Record<string, string> = {
+  sadness: "😢",
+  joy: "😊",
+  love: "❤️",
+  anger: "😡",
+  fear: "😨",
+  surprise: "😲",
+};
+const QUOTES: Record<string, string> = {
+  sadness: "It's okay to feel sad—brighter days are ahead.",
+  joy: "Keep smiling and share your happiness with others!",
+  love: "Love makes everything better.",
+  anger: "Take a deep breath; it's going to be okay.",
+  fear: "Courage doesn't always roar—hang in there.",
+  surprise: "Life is full of surprises!",
+};
 
 function EmotionDemo() {
   const [text, setText] = useState("I'm so excited about this new project!");
   const [results, setResults] = useState<Record<string, number> | null>(null);
+  const [predicted, setPredicted] = useState<string | null>(null);
+  const [rating, setRating] = useState(0);
   const analyze = async () => {
     setResults(null);
+    setPredicted(null);
+    setRating(0);
     try {
       const res = await fetch("/api/emotion", {
         method: "POST",
@@ -18,12 +38,9 @@ function EmotionDemo() {
         body: JSON.stringify({ text }),
       });
       const data = await res.json();
-      if (data) {
-        const counts: Record<string, number> = {};
-        for (const label of Object.values<string>(data)) {
-          counts[label] = (counts[label] || 0) + 1;
-        }
-        setResults(counts);
+      if (data && data.label) {
+        setResults({ [data.label]: 1 });
+        setPredicted(data.label);
       }
     } catch (err) {
       console.error("Failed to analyze", err);
@@ -43,21 +60,21 @@ function EmotionDemo() {
         <Button onClick={analyze} className="w-full bg-blue-600 hover:bg-blue-700 text-white">
           Analyze Emotions
         </Button>
-        {results && (
-          <div className="mt-4 space-y-2">
-            {EMOTIONS.map((emo) => {
-              const val = results[emo] || 0;
-              const pct = (val / 6) * 100;
-              return (
-                <div key={emo} className="flex justify-between items-center">
-                  <span className="text-sm capitalize">{emo}</span>
-                  <div className="w-1/2 bg-gray-200 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${pct}%` }}></div>
-                  </div>
-                  <span className="text-sm font-medium">{Math.round(pct)}%</span>
-                </div>
-              );
-            })}
+        {predicted && (
+          <div className="mt-4 text-center">
+            <p className="text-lg font-semibold capitalize">
+              {predicted} {EMOJI_MAP[predicted]}
+            </p>
+            <p className="text-sm text-slate-600 mt-2">{QUOTES[predicted]}</p>
+            <div className="flex justify-center mt-3">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <i
+                  key={i}
+                  onClick={() => setRating(i)}
+                  className={`fas fa-star mx-0.5 ${i <= rating ? 'text-yellow-400' : 'text-gray-300'} cursor-pointer`}
+                ></i>
+              ))}
+            </div>
           </div>
         )}
       </div>
