@@ -94,7 +94,6 @@ interface Project {
   businessProblem: string;
   achievements: string[];
   technologies: string[];
-  demoUrl?: string;
   codeUrl?: string;
   dashboardUrl?: string;
   badge: {
@@ -123,9 +122,8 @@ export default function Projects() {
         "Streamlit Web Application"
       ],
       technologies: ["Python", "Hugging Face", "Streamlit", "NLP", "Transformers"],
-      demoUrl: "", // TODO: Add actual Streamlit app URL
       codeUrl: "", // TODO: Add GitHub repository URL
-      badge: { text: "Live Demo", variant: "default", color: "bg-green-100 text-green-800" },
+      badge: { text: "Demo", variant: "default", color: "bg-green-100 text-green-800" },
       icon: "fas fa-brain",
       iconColor: "text-blue-600",
       gradientFrom: "from-blue-50",
@@ -169,6 +167,64 @@ export default function Projects() {
       iconColor: "text-red-600",
       gradientFrom: "from-red-50",
       gradientTo: "to-pink-100"
+    },
+    {
+      id: "covid-forecast",
+      title: "COVID-19 Case Forecasting",
+      subtitle: "Time Series Analysis & Visualization",
+      description: "Exploratory analysis and forecasting of global COVID-19 cases using advanced time series models",
+      businessProblem: "Health agencies require accurate case forecasts to plan resources and interventions.",
+      achievements: [
+        "Data Cleaning Across Sources",
+        "ARIMA vs Prophet Models",
+        "Power BI Dashboard"
+      ],
+      technologies: ["Python", "Pandas", "Prophet", "Power BI"],
+      dashboardUrl: "", // TODO: attach dashboard file
+      codeUrl: "",
+      badge: { text: "Time Series", variant: "secondary", color: "bg-purple-100 text-purple-800" },
+      icon: "fas fa-virus",
+      iconColor: "text-purple-600",
+      gradientFrom: "from-purple-50",
+      gradientTo: "to-purple-100"
+    },
+    {
+      id: "carrollton-calls",
+      title: "City of Carrollton Call Center Analytics",
+      subtitle: "Operational Dashboard & Recommendations",
+      description: "Analyzed call center data to identify trends and improve customer-service efficiency",
+      businessProblem: "City officials needed metrics on call volumes and staffing gaps to reduce unanswered calls and wait times.",
+      achievements: [
+        "Imputed Missing Metrics",
+        "Interactive Power BI Dashboard",
+        "Actionable Staffing Plan"
+      ],
+      technologies: ["Power BI", "Python", "Excel"],
+      dashboardUrl: "", // TODO: attach dashboard file
+      badge: { text: "Operations", variant: "outline", color: "bg-indigo-100 text-indigo-800" },
+      icon: "fas fa-city",
+      iconColor: "text-indigo-600",
+      gradientFrom: "from-indigo-50",
+      gradientTo: "to-indigo-100"
+    },
+    {
+      id: "court-disposition",
+      title: "Court Disposition Time Analysis",
+      subtitle: "Kentucky 61st District",
+      description: "Examined felony and misdemeanor cases to highlight outliers and backlog issues for 2022",
+      businessProblem: "Judicial leaders needed insight into case processing delays to allocate resources and improve scheduling.",
+      achievements: [
+        "Merged Multi-Source Data",
+        "Monthly Disposition Visuals",
+        "Identified 4% Invalid Records"
+      ],
+      technologies: ["Excel", "Power BI", "Python"],
+      dashboardUrl: "", // TODO: attach dashboard file
+      badge: { text: "Analytics", variant: "outline", color: "bg-gray-100 text-gray-800" },
+      icon: "fas fa-balance-scale",
+      iconColor: "text-gray-600",
+      gradientFrom: "from-gray-50",
+      gradientTo: "to-zinc-100"
     }
   ];
 
@@ -357,17 +413,6 @@ export default function Projects() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-4">
-                      {project.demoUrl !== undefined && (
-                        <Button 
-                          onClick={() => openUrl(project.demoUrl!)}
-                          className={`${project.iconColor === 'text-blue-600' ? 'bg-blue-600 hover:bg-blue-700' : 
-                                     project.iconColor === 'text-green-600' ? 'bg-green-600 hover:bg-green-700' : 
-                                     'bg-red-600 hover:bg-red-700'} text-white`}
-                        >
-                          <i className="fas fa-external-link-alt mr-2"></i>
-                          {project.id === "emotion-detection" ? "View Live Demo" : "View Dashboard"}
-                        </Button>
-                      )}
                       
                       {project.codeUrl !== undefined && (
                         <Button 

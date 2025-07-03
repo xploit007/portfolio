@@ -1,7 +1,6 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import OpenAI from "openai";
 import { execFileSync } from "child_process";
 import path from "path";
 
@@ -65,31 +64,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // use storage to perform CRUD operations on the storage interface
   // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
 
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    throw new Error("OPENAI_API_KEY is not set");
+  function generateResponse(msg: string): string {
+    const q = msg.toLowerCase();
+    if (q.includes("phone") || q.includes("contact")) {
+      return "You can reach Mallikarjun at (945) 209-2606.";
+    }
+    if (q.includes("email")) {
+      return "Mallikarjun's email is Mallikarjun.Gudum@gmail.com.";
+    }
+    if (q.includes("linkedin")) {
+      return "Connect on LinkedIn at www.linkedin.com/in/mallikarjungn/.";
+    }
+    if (q.includes("location")) {
+      return "Mallikarjun is based in Dallas, TX and willing to relocate anywhere in the US.";
+    }
+    if (q.includes("visa") || q.includes("authorization")) {
+      return "He holds an F-1 VISA with OPT valid through June 2028 and may need sponsorship after.";
+    }
+    if (q.includes("skill")) {
+      return "Key skills include Python, R, SQL, Power BI, Tableau, Spark, AWS, Azure and ML libraries such as scikit-learn and PyTorch.";
+    }
+    if (q.includes("experience")) {
+      return "Mallikarjun worked as a Research Analyst at UT Dallas and as an Associate Analyst at Innover Digital.";
+    }
+    if (q.includes("education")) {
+      return "He earned an MS in Business Analytics & AI from UT Dallas and a BS in Electronics & Communications Engineering from REVA University.";
+    }
+    if (q.includes("certification")) {
+      return "Certifications include AWS Certified Developer – Associate and Microsoft Certified: Azure Fundamentals.";
+    }
+    if (q.includes("project")) {
+      return "Projects span airline pricing optimization, emotion detection in tweets, SDG energy access forecasting, and A/B testing of e‑shop clickstream data.";
+    }
+    if (q.includes("interest") || q.includes("hobby")) {
+      return "Interests include applying analytics in aviation, visiting all US national parks, and professional sports.";
+    }
+    return "";
   }
-  const openai = new OpenAI({ apiKey });
 
-  app.post("/api/chat", async (req: Request, res: Response) => {
+  app.post("/api/chat", (req: Request, res: Response) => {
     const message: string | undefined = req.body?.message;
     if (!message) {
       return res.status(400).json({ message: "Message required" });
     }
 
-    try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: profileInfo },
-          { role: "user", content: message },
-        ],
-      });
-      const response = completion.choices[0]?.message?.content || "";
+    const response = generateResponse(message);
+    if (response) {
       res.json({ message: response });
-    } catch (err) {
-      console.error("OpenAI request failed", err);
-      res.status(500).json({ message: "Failed to fetch response" });
+    } else {
+      res.json({ message: "I don’t have that detail on hand—please fill out this form and I’ll get back to you once I confirm." });
     }
   });
 
