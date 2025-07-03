@@ -259,16 +259,36 @@ export default function Projects() {
       );
     }
 
-    if (project.modelPerformance) {
+    if (project.modelPerformance || project.topRiskFactors) {
       return (
         <div className="w-full flex flex-col items-center text-center space-y-4">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full">
-            <h4 className="font-semibold text-slate-800 mb-2">Model Performance</h4>
-            <ul className="text-sm space-y-1">
-              {project.modelPerformance.map((m) => (
-                <li key={m.model}>{`${m.model}: ${m.accuracy}`}</li>
-              ))}
-            </ul>
+            {project.modelPerformance && (
+              <>
+                <h4 className="font-semibold text-slate-800 mb-2">
+                  {project.topRiskFactors
+                    ? "Model Accuracy Comparison"
+                    : "Model Performance"}
+                </h4>
+                <ul className="text-sm space-y-1 mb-2">
+                  {project.modelPerformance.map((m) => (
+                    <li key={m.model}>{`${m.model}: ${m.accuracy}`}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {project.topRiskFactors && (
+              <>
+                <h5 className="font-semibold text-slate-800 mt-4">
+                  Top Risk Factors
+                </h5>
+                <ul className="text-sm space-y-1">
+                  {project.topRiskFactors.map((r) => (
+                    <li key={r.factor}>{`${r.factor}: ${r.value}`}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
           {project.previewUrl && (
             <iframe
@@ -276,27 +296,6 @@ export default function Projects() {
               className="rounded-lg shadow-lg w-full h-64"
             ></iframe>
           )}
-        </div>
-      );
-    }
-
-    if (project.topRiskFactors) {
-      return (
-        <div className="w-full flex flex-col items-center text-center space-y-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full">
-            <h4 className="font-semibold text-slate-800 mb-2">Model Accuracy Comparison</h4>
-            <ul className="text-sm space-y-1 mb-2">
-              {project.modelPerformance?.map((m) => (
-                <li key={m.model}>{`${m.model}: ${m.accuracy}`}</li>
-              ))}
-            </ul>
-            <h5 className="font-semibold text-slate-800 mt-4">Top Risk Factors</h5>
-            <ul className="text-sm space-y-1">
-              {project.topRiskFactors.map((r) => (
-                <li key={r.factor}>{`${r.factor}: ${r.value}`}</li>
-              ))}
-            </ul>
-          </div>
         </div>
       );
     }
