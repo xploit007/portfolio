@@ -1,90 +1,9 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "./AnimatedSection";
-import { apiUrl } from "@/lib/utils";
+import DashboardImg from "../resources/NYC_Skyline.png";
 
-const EMOTIONS = ["sadness", "joy", "love", "anger", "fear", "surprise"] as const;
-const EMOJI_MAP: Record<string, string> = {
-  sadness: "😢",
-  joy: "😊",
-  love: "❤️",
-  anger: "😡",
-  fear: "😨",
-  surprise: "😲",
-};
-const QUOTES: Record<string, string> = {
-  sadness: "It's okay to feel sad, brighter days are ahead.",
-  joy: "Keep smiling and share your happiness with others!",
-  love: "Love makes everything better.",
-  anger: "Take a deep breath; it's going to be okay.",
-  fear: "Courage doesn't always roar, hang in there.",
-  surprise: "Life is full of surprises!",
-};
-
-function EmotionDemo() {
-  const [text, setText] = useState("I'm so excited about this new project!");
-  const [results, setResults] = useState<Record<string, number> | null>(null);
-  const [predicted, setPredicted] = useState<string | null>(null);
-  const [rating, setRating] = useState(0);
-  const analyze = async () => {
-    setResults(null);
-    setPredicted(null);
-    setRating(0);
-    try {
-      const res = await fetch(apiUrl("/api/emotion"), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
-      });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      const data = await res.json();
-      if (data && data.label) {
-        setResults({ [data.label]: 1 });
-        setPredicted(data.label);
-      }
-    } catch (err) {
-      console.error("Failed to analyze", err);
-    }
-  };
-
-  return (
-    <div className="w-full max-w-md">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h4 className="font-semibold text-slate-800 mb-4">Try the Demo</h4>
-        <textarea
-          className="w-full p-3 border border-gray-300 rounded-lg mb-4 text-sm"
-          rows={3}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <Button onClick={analyze} className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-          Analyze Emotions
-        </Button>
-        {predicted && (
-          <div className="mt-4 text-center">
-            <p className="text-lg font-semibold capitalize">
-              {predicted} {EMOJI_MAP[predicted]}
-            </p>
-            <p className="text-sm text-slate-600 mt-2">{QUOTES[predicted]}</p>
-            <div className="flex justify-center mt-3">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <i
-                  key={i}
-                  onClick={() => setRating(i)}
-                  className={`fas fa-star mx-0.5 ${i <= rating ? 'text-yellow-400' : 'text-gray-300'} cursor-pointer`}
-                ></i>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 interface Project {
   id: string;
@@ -109,6 +28,14 @@ interface Project {
 
 export default function Projects() {
   // TODO: Update with actual project URLs and achievements
+  const accuracy: Record<string, number> = {
+    "emotion-detection": 78,
+    "afghanistan-energy": 96,
+    "credit-risk": 85,
+    "covid-forecast": 90,
+    "carrollton-calls": 88,
+    "court-disposition": 86,
+  };
   const projects: Project[] = [
     {
       id: "emotion-detection",
@@ -236,110 +163,20 @@ export default function Projects() {
     }
   };
 
-  const renderProjectDemo = (project: Project) => {
-    switch (project.id) {
-      case "emotion-detection":
-        return (
-          <EmotionDemo />
-        );
-      
-      case "afghanistan-energy":
-        return (
-          <div className="w-full">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h4 className="font-semibold text-slate-800 mb-4">Afghanistan Energy Access Progress</h4>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">2000</span>
-                  <div className="flex-1 mx-4 bg-gray-200 rounded-full h-3">
-                    <div className="bg-red-500 h-3 rounded-full" style={{width: '2%'}}></div>
-                  </div>
-                  <span className="text-sm">1.73%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">2010</span>
-                  <div className="flex-1 mx-4 bg-gray-200 rounded-full h-3">
-                    <div className="bg-yellow-500 h-3 rounded-full" style={{width: '40%'}}></div>
-                  </div>
-                  <span className="text-sm">43.2%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">2020</span>
-                  <div className="flex-1 mx-4 bg-gray-200 rounded-full h-3">
-                    <div className="bg-green-500 h-3 rounded-full" style={{width: '98%'}}></div>
-                  </div>
-                  <span className="text-sm">97.71%</span>
-                </div>
-              </div>
-              <div className="mt-6 h-48 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <i className="fas fa-map-marked-alt text-4xl text-green-600 mb-2"></i>
-                  <p className="text-sm text-slate-600">Interactive Province Map</p>
-                  <p className="text-xs text-slate-500 mt-1">Click to explore dashboard</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      
-      case "credit-risk":
-        return (
-          <div className="w-full">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h4 className="font-semibold text-slate-800 mb-4">Model Performance Metrics</h4>
-              
-              <div className="mb-6">
-                <p className="text-sm font-medium mb-3">Model Accuracy Comparison</p>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm">XGBoost</span>
-                    <div className="w-1/2 bg-gray-200 rounded-full h-3">
-                      <div className="bg-green-500 h-3 rounded-full" style={{width: '85%'}}></div>
-                    </div>
-                    <span className="text-sm font-medium">85%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm">CNN</span>
-                    <div className="w-1/2 bg-gray-200 rounded-full h-3">
-                      <div className="bg-blue-500 h-3 rounded-full" style={{width: '82%'}}></div>
-                    </div>
-                    <span className="text-sm font-medium">82%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm">Baseline</span>
-                    <div className="w-1/2 bg-gray-200 rounded-full h-3">
-                      <div className="bg-red-500 h-3 rounded-full" style={{width: '76%'}}></div>
-                    </div>
-                    <span className="text-sm font-medium">76%</span>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-medium mb-3">Top Risk Factors</p>
-                <div className="space-y-1 text-xs">
-                  <div className="flex justify-between">
-                    <span>Credit Utilization</span>
-                    <span className="font-medium">0.23</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Payment History</span>
-                    <span className="font-medium">0.19</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Income Ratio</span>
-                    <span className="font-medium">0.15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      
-      default:
-        return null;
-    }
-  };
+  const renderProjectDemo = (project: Project) => (
+    <div className="w-full">
+      <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+        <h4 className="font-semibold text-slate-800 mb-4">Prediction Accuracy</h4>
+        <p className="text-5xl font-bold text-blue-600">{accuracy[project.id]}%</p>
+      </div>
+      <motion.img
+        src={DashboardImg}
+        alt={`${project.title} dashboard`}
+        className="rounded-lg mt-6 w-full h-48 object-cover shadow-lg"
+        whileHover={{ scale: 1.05 }}
+      />
+    </div>
+  );
 
   return (
     <section className="py-20 gradient-bg">
@@ -413,31 +250,22 @@ export default function Projects() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-4">
-                      
-                      {project.codeUrl !== undefined && (
-                        <Button 
-                          variant="outline"
-                          onClick={() => openUrl(project.codeUrl!)}
-                          className={`border-2 ${project.iconColor === 'text-blue-600' ? 'border-blue-600 text-blue-600 hover:bg-blue-600' : 
-                                     project.iconColor === 'text-green-600' ? 'border-green-600 text-green-600 hover:bg-green-600' : 
-                                     'border-red-600 text-red-600 hover:bg-red-600'} hover:text-white`}
-                        >
-                          <i className="fab fa-github mr-2"></i>
-                          {project.id === "credit-risk" ? "Jupyter Notebook" : "View Code"}
-                        </Button>
-                      )}
-
-                      {project.dashboardUrl !== undefined && (
-                        <Button 
-                          variant="outline"
-                          onClick={() => openUrl(project.dashboardUrl!)}
-                          className={`border-2 ${project.iconColor === 'text-green-600' ? 'border-green-600 text-green-600 hover:bg-green-600' : 
-                                     'border-red-600 text-red-600 hover:bg-red-600'} hover:text-white`}
-                        >
-                          <i className={`${project.id === "afghanistan-energy" ? "fas fa-chart-bar" : "fas fa-chart-pie"} mr-2`}></i>
-                          {project.id === "afghanistan-energy" ? "Read Analysis" : "Model Dashboard"}
-                        </Button>
-                      )}
+                      <Button
+                        variant="outline"
+                        onClick={() => openUrl(project.dashboardUrl ?? '')}
+                        className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                      >
+                        <i className="fas fa-file-alt mr-2"></i>
+                        View Report
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => openUrl(project.codeUrl ?? '')}
+                        className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                      >
+                        <i className="fab fa-github mr-2"></i>
+                        GitHub
+                      </Button>
                     </div>
                   </div>
                   
@@ -451,17 +279,6 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Additional Projects Placeholder */}
-        <AnimatedSection>
-          <div className="text-center mt-20">
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-dashed border-gray-300">
-              <i className="fas fa-plus-circle text-4xl text-gray-400 mb-4"></i>
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">More Projects Coming Soon</h3>
-              <p className="text-gray-500">Additional case studies and interactive demos will be added here</p>
-              {/* TODO: Add more projects as they are completed */}
-            </div>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   );
