@@ -46,27 +46,36 @@ def train_models():
         'xgboost': XGBClassifier(max_depth=4, n_estimators=50,
                                 use_label_encoder=False, eval_metric='logloss'),
     }
+    best_acc = 0.0
+    best_name = None
+    best_model = None
     for name, model in models.items():
         model.fit(X_train, y_train)
+        acc = model.score(X_test, y_test)
+        if acc > best_acc:
+            best_acc = acc
+            best_name = name
+            best_model = model
         joblib.dump(model, MODEL_DIR / f'{name}.joblib')
     joblib.dump(vectorizer, MODEL_DIR / 'vectorizer.joblib')
+    if best_model is not None:
+        joblib.dump(best_model, MODEL_DIR / 'best_model.joblib')
+        (MODEL_DIR / 'best_model.txt').write_text(best_name or '')
 
 
 def load_models():
-    if not (MODEL_DIR / 'vectorizer.joblib').exists():
+    if not (MODEL_DIR / 'best_model.joblib').exists():
         train_models()
     vectorizer = joblib.load(MODEL_DIR / 'vectorizer.joblib')
-    models = {}
-    for name in ['log_reg', 'svm', 'naive_bayes', 'random_forest', 'decision_tree', 'xgboost']:
-        models[name] = joblib.load(MODEL_DIR / f'{name}.joblib')
-    return vectorizer, models
+    model = joblib.load(MODEL_DIR / 'best_model.joblib')
+    return vectorizer, model
 
 
 def predict(text: str):
-    vectorizer, models = load_models()
+    vectorizer, model = load_models()
     features = vectorizer.transform([text])
-    predictions = {name: LABELS[model.predict(features)[0]] for name, model in models.items()}
-    return predictions
+    label_idx = model.predict(features)[0]
+    return {"label": LABELS[label_idx]}
 
 
 if __name__ == '__main__':

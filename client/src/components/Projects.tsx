@@ -38,14 +38,9 @@ function EmotionDemo() {
         body: JSON.stringify({ text }),
       });
       const data = await res.json();
-      if (data) {
-        const counts: Record<string, number> = {};
-        for (const label of Object.values<string>(data)) {
-          counts[label] = (counts[label] || 0) + 1;
-        }
-        setResults(counts);
-        const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
-        if (top) setPredicted(top[0]);
+      if (data && data.label) {
+        setResults({ [data.label]: 1 });
+        setPredicted(data.label);
       }
     } catch (err) {
       console.error("Failed to analyze", err);
