@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ChatbotICON from "../resources/chatbot-logo.png";
+import { apiUrl } from "@/lib/utils";
 
 interface Message {
   id: string;
@@ -56,11 +57,14 @@ export default function ChatBot() {
   const sendMessage = async (text: string) => {
     addMessage(text);
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(apiUrl("/api/chat"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
       });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       const data = await res.json();
       if (data?.message) {
         addMessage(data.message, true);

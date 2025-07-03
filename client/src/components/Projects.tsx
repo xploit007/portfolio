@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "./AnimatedSection";
+import { apiUrl } from "@/lib/utils";
 
 const EMOTIONS = ["sadness", "joy", "love", "anger", "fear", "surprise"] as const;
 const EMOJI_MAP: Record<string, string> = {
@@ -32,11 +33,14 @@ function EmotionDemo() {
     setPredicted(null);
     setRating(0);
     try {
-      const res = await fetch("/api/emotion", {
+      const res = await fetch(apiUrl("/api/emotion"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
       });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       const data = await res.json();
       if (data && data.label) {
         setResults({ [data.label]: 1 });

@@ -87,3 +87,10 @@ export const slugify = (text: string) => {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
 };
+
+// Build API URL respecting the app base path
+export const apiUrl = (endpoint: string) => {
+  const base = import.meta.env.BASE_URL || '/';
+  const prefix = base === '/' ? '' : base.replace(/\/$/, '');
+  return `${prefix}${endpoint.startsWith('/') ? endpoint : '/' + endpoint}`;
+};
