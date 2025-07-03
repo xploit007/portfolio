@@ -85,8 +85,8 @@ const courseWorkUTD: CourseWork[] = [
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Education & Learning</h2>
-            <p className="text-xl text-slate-600">Building expertise through formal education and continuous learning</p>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Education</h2>
+            <p className="text-xl text-slate-600">Building expertise through formal education</p>
           </div>
         </AnimatedSection>
 

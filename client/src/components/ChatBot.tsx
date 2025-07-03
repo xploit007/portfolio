@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ChatbotICON from "../resources/chatbot-logo.png";
-import { apiUrl } from "@/lib/utils";
 
 interface Message {
   id: string;
@@ -26,11 +25,44 @@ export default function ChatBot() {
   const [showWelcome, setShowWelcome] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const quickQuestions = [
-    "Tell me about the emotion detection project",
-    "What technologies do you use?",
-    "Show me your experience",
-  ];
+
+  const generateResponse = (msg: string): string => {
+    const q = msg.toLowerCase();
+    if (q.includes("phone") || q.includes("contact")) {
+      return "You can reach Mallikarjun at (945) 209-2606.";
+    }
+    if (q.includes("email")) {
+      return "Mallikarjun's email is Mallikarjun.Gudum@gmail.com.";
+    }
+    if (q.includes("linkedin")) {
+      return "Connect on LinkedIn at www.linkedin.com/in/mallikarjungn/.";
+    }
+    if (q.includes("location")) {
+      return "Mallikarjun is based in Dallas, TX and willing to relocate anywhere in the US.";
+    }
+    if (q.includes("visa") || q.includes("authorization")) {
+      return "He holds an F-1 VISA with OPT valid through June 2028 and may need sponsorship after.";
+    }
+    if (q.includes("skill")) {
+      return "Key skills include Python, R, SQL, Power BI, Tableau, Spark, AWS, Azure and ML libraries such as scikit-learn and PyTorch.";
+    }
+    if (q.includes("experience")) {
+      return "Mallikarjun worked as a Research Analyst at UT Dallas and as an Associate Analyst at Innover Digital.";
+    }
+    if (q.includes("education")) {
+      return "He earned an MS in Business Analytics & AI from UT Dallas and a BS in Electronics & Communications Engineering from REVA University.";
+    }
+    if (q.includes("certification")) {
+      return "Certifications include AWS Certified Developer – Associate and Microsoft Certified: Azure Fundamentals.";
+    }
+    if (q.includes("project")) {
+      return "Projects span airline pricing optimization, emotion detection in tweets, SDG energy access forecasting, and A/B testing of e‑shop clickstream data.";
+    }
+    if (q.includes("interest") || q.includes("hobby")) {
+      return "Interests include applying analytics in aviation, visiting all US national parks, and professional sports.";
+    }
+    return "I don’t have that detail on hand—please fill out this form and I’ll get back to you once I confirm.";
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 5000);
@@ -54,24 +86,10 @@ export default function ChatBot() {
     ]);
   };
 
-  const sendMessage = async (text: string) => {
+  const sendMessage = (text: string) => {
     addMessage(text);
-    try {
-      const res = await fetch(apiUrl("/api/chat"), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
-      });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      const data = await res.json();
-      if (data?.message) {
-        addMessage(data.message, true);
-      }
-    } catch (err) {
-      addMessage("Sorry, I couldn't get a response.", true);
-    }
+    const response = generateResponse(text);
+    addMessage(response, true);
   };
 
   const handleSendMessage = () => {
@@ -79,10 +97,6 @@ export default function ChatBot() {
     const text = inputValue;
     setInputValue("");
     sendMessage(text);
-  };
-
-  const handleQuickQuestion = (question: string) => {
-    sendMessage(question);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -166,31 +180,6 @@ export default function ChatBot() {
                   </motion.div>
                 ))}
 
-                {/* Quick Action Buttons */}
-                {messages.length === 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.5 }}
-                    className="flex flex-wrap gap-2 ml-11"
-                  >
-                    {quickQuestions.map((q) => (
-                      <Button
-                        key={q}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleQuickQuestion(q)}
-                        className="text-xs px-3 py-1 h-auto border-blue-200 text-blue-600 hover:bg-blue-50"
-                      >
-                        {q.includes("emotion")
-                          ? "Emotion Detection"
-                          : q.includes("technologies")
-                          ? "Technologies"
-                          : "Experience"}
-                      </Button>
-                    ))}
-                  </motion.div>
-                )}
               </div>
             </div>
 
