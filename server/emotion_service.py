@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 import joblib
 from datasets import load_dataset
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -14,14 +15,25 @@ from xgboost import XGBClassifier
 
 LABELS = ['sadness', 'joy', 'love', 'anger', 'fear', 'surprise']
 MODEL_DIR = Path(__file__).resolve().parent / 'emotion_models'
+# Optional custom training data can be placed at attached_assets/emotion_dataset.csv
+# The CSV should contain 'text' and 'label' columns.
+DATASET_PATH = Path(__file__).resolve().parent.parent / 'attached_assets' / 'emotion_dataset.csv'
 
 
 def train_models():
     MODEL_DIR.mkdir(exist_ok=True)
-    ds = load_dataset('dair-ai/emotion', split='train')
+    if DATASET_PATH.exists():
+        df = pd.read_csv(DATASET_PATH)
+        texts = df['text'].astype(str).tolist()
+        labels = df['label'].tolist()
+        labels = [LABELS.index(l) if isinstance(l, str) else int(l) for l in labels]
+    else:
+        ds = load_dataset('dair-ai/emotion', split='train')
+        texts = ds['text']
+        labels = ds['label']
     vectorizer = TfidfVectorizer(max_features=2000)
-    X = vectorizer.fit_transform(ds['text'])
-    y = ds['label']
+    X = vectorizer.fit_transform(texts)
+    y = labels
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
