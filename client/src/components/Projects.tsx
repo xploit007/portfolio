@@ -249,7 +249,7 @@ export default function Projects() {
           {project.images.map((img) => (
             <motion.img
               key={img}
-              src={require(`../resources/${img}`)}
+              src={new URL(`../resources/${img}`, import.meta.url).href}
               alt={img}
               className="rounded-lg shadow-lg max-h-60 w-full object-contain"
               whileHover={{ scale: 1.05 }}
