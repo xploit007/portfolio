@@ -24,51 +24,85 @@ interface Project {
   iconColor: string;
   gradientFrom: string;
   gradientTo: string;
+  primaryCTA?: { text: string; link: string };
+  secondaryCTA?: { text: string; link: string };
+  images?: string[];
+  embedCode?: string;
+  keyOutcome?: string;
+  keyMetric?: string;
+  modelPerformance?: { model: string; accuracy: string }[];
+  topRiskFactors?: { factor: string; value: string }[];
+  previewUrl?: string;
 }
 
 export default function Projects() {
   // TODO: Update with actual project URLs and achievements
-  const accuracy: Record<string, number> = {
-    "emotion-detection": 78,
-    "afghanistan-energy": 96,
-    "credit-risk": 85,
-    "covid-forecast": 90,
-    "carrollton-calls": 88,
-    "court-disposition": 86,
-  };
   const projects: Project[] = [
     {
       id: "emotion-detection",
-      title: "Real-Time Emotion Analysis",
-      subtitle: "for Social Media Content",
-      description: "Interactive web application for analyzing emotions in text using advanced NLP models",
-      businessProblem: "Companies need to understand customer sentiment in real-time to manage brand reputation, identify product issues, and gauge marketing campaign success. Manual analysis is impossible at scale.",
+      title: "SentimentPulse: Real-Time Emotion Insights",
+      subtitle: "Multi-Label Emotion Detection",
+      description:
+        "Companies struggle to gauge user emotion at scale. SentimentPulse uses live text feeds and a multi-label NLP model to detect six core emotions instantly—powering smarter engagement and rapid brand monitoring.",
+      businessProblem:
+        "Companies need to understand customer sentiment in real-time to manage brand reputation, identify product issues, and gauge marketing campaign success. Manual analysis is impossible at scale.",
       achievements: [
-        "Hugging Face Transformers Implementation",
-        "Multi-label Emotion Classification",
-        "Streamlit Web Application"
+        "Hugging Face transformers fine-tuned for multi-label emotion classification",
+        "Streamlit web interface for live user input and instant visual feedback",
+        "Automated Python pipeline handling data cleaning, inference, and result logging"
       ],
-      technologies: ["Python", "Hugging Face", "Streamlit", "NLP", "Transformers"],
-      codeUrl: "", // TODO: Add GitHub repository URL
+      technologies: [
+        "Python",
+        "Hugging Face",
+        "Streamlit",
+        "NLP",
+        "Real-Time Analytics"
+      ],
+      primaryCTA: { text: "View Demo", link: "https://example.com/streamlit" },
+      secondaryCTA: { text: "GitHub", link: "https://github.com/your-repo" },
       badge: { text: "Demo", variant: "default", color: "bg-green-100 text-green-800" },
       icon: "fas fa-brain",
       iconColor: "text-blue-600",
       gradientFrom: "from-blue-50",
-      gradientTo: "to-indigo-100"
+      gradientTo: "to-indigo-100",
+      modelPerformance: [
+        { model: "SVM", accuracy: "89.4%" },
+        { model: "XGBoost", accuracy: "88.9%" },
+        { model: "Decision Tree", accuracy: "86.9%" },
+        { model: "Logistic Regression", accuracy: "86.2%" },
+        { model: "Random Forest", accuracy: "73.5%" },
+        { model: "Naive Bayes", accuracy: "67.6%" }
+      ],
+      previewUrl: "https://example.com/streamlit"
     },
     {
       id: "afghanistan-energy",
-      title: "Afghanistan's Energy Access Journey",
+      title: "PowerGrid Progress: Afghanistan Electrification Insights",
       subtitle: "A Decade of Progress Visualization",
-      description: "Data storytelling project tracking SDG progress in energy access across Afghanistan provinces",
-      businessProblem: "International development agencies and governments need to track progress on key initiatives like the UN's Sustainable Development Goals to allocate resources effectively and measure the impact of policies.",
+      description:
+        "Governments and NGOs need clear, up-to-date views of how electrification spreads so they can target investments. PowerGrid Progress combines time-series forecasting with interactive visuals to reveal provincial gains and guide $2 B+ funding decisions.",
+      businessProblem:
+        "International development agencies and governments need to track progress on key initiatives like the UN's Sustainable Development Goals to allocate resources effectively and measure the impact of policies.",
       achievements: [
-        "Time-series Forecasting Models",
-        "Interactive Tableau Dashboards",
-        "Provincial-level Analysis"
+        "Time-series forecasting models projecting future access trends",
+        "Interactive Tableau-style visuals for drill-down by province",
+        "Provincial-level analysis linking policy changes to access rates"
       ],
-      technologies: ["Tableau", "Power BI", "Python", "Time Series", "Data Visualization"],
-      dashboardUrl: "", // TODO: Add Tableau/Power BI dashboard URL
+      technologies: [
+        "Python",
+        "Tableau",
+        "Power BI",
+        "Time Series",
+        "Data Visualization"
+      ],
+      primaryCTA: {
+        text: "Download Plots",
+        link: "https://example.com/afg_plots"
+      },
+      secondaryCTA: { text: "GitHub", link: "https://github.com/your-repo" },
+      images: ["afg_access_trend.png", "afg_correlation.png"],
+      keyOutcome:
+        "Documented a rise from 1.73 % → 97.71 % electrification, supporting over $2.3 B in development funding.",
       badge: { text: "Data for Good", variant: "outline", color: "bg-blue-100 text-blue-800" },
       icon: "fas fa-chart-line",
       iconColor: "text-green-600",
@@ -77,18 +111,37 @@ export default function Projects() {
     },
     {
       id: "credit-risk",
-      title: "Credit Risk Assessment with XGBoost",
+      title: "CreditGuard: XGBoost Loan-Default Prediction",
       subtitle: "at American Express",
-      description: "Machine learning model optimization for predicting credit default risk with improved accuracy",
-      businessProblem: "Lenders must accurately predict the likelihood of a borrower defaulting on a loan to minimize financial losses while providing fair access to credit. Traditional models can often be improved.",
+      description:
+        "Financial institutions must balance risk and access. CreditGuard applies tree-based ML and savvy feature engineering to predict defaults more accurately—informing fair lending decisions.",
+      businessProblem:
+        "Lenders must accurately predict the likelihood of a borrower defaulting on a loan to minimize financial losses while providing fair access to credit. Traditional models can often be improved.",
       achievements: [
-        "XGBoost vs CNN Model Comparison",
-        "Feature Engineering & Selection",
-        "Hyperparameter Optimization"
+        "XGBoost model tuned for loan-default classification",
+        "Feature engineering on borrower demographics, credit history, transaction patterns",
+        "Hyperparameter optimization yielding significant F1-score uplift"
       ],
-      technologies: ["XGBoost", "Python", "Scikit-learn", "Power BI", "Feature Engineering"],
-      dashboardUrl: "", // TODO: Add Power BI dashboard URL
-      codeUrl: "", // TODO: Add Jupyter notebook URL
+      technologies: [
+        "Python",
+        "XGBoost",
+        "Scikit-Learn",
+        "Feature Engineering",
+        "ML Modeling"
+      ],
+      primaryCTA: { text: "View Notebook", link: "https://example.com/notebook" },
+      secondaryCTA: { text: "GitHub", link: "https://github.com/your-repo" },
+      keyMetric: "F1-score of 0.85 (11.6% improvement over baseline)",
+      modelPerformance: [
+        { model: "XGBoost", accuracy: "85%" },
+        { model: "CNN", accuracy: "82%" },
+        { model: "Baseline Logistic Regression", accuracy: "76%" }
+      ],
+      topRiskFactors: [
+        { factor: "Credit Utilization", value: "0.23" },
+        { factor: "Payment History", value: "0.19" },
+        { factor: "Income Ratio", value: "0.15" }
+      ],
       badge: { text: "Machine Learning", variant: "destructive", color: "bg-red-100 text-red-800" },
       icon: "fas fa-shield-alt",
       iconColor: "text-red-600",
@@ -97,18 +150,24 @@ export default function Projects() {
     },
     {
       id: "covid-forecast",
-      title: "COVID-19 Case Forecasting",
+      title: "PandemicPredict: COVID-19 Case Forecasting",
       subtitle: "Time Series Analysis & Visualization",
-      description: "Exploratory analysis and forecasting of global COVID-19 cases using advanced time series models",
+      description:
+        "To help health agencies allocate resources, PandemicPredict ingests global case/death feeds, benchmarks ARIMA vs. Prophet forecasts, and delivers precise short-term projections.",
       businessProblem: "Health agencies require accurate case forecasts to plan resources and interventions.",
       achievements: [
-        "Data Cleaning Across Sources",
-        "ARIMA vs Prophet Models",
-        "Power BI Dashboard"
+        "Cleaned and merged daily cases/deaths from multiple sources",
+        "Benchmarked ARIMA vs. Prophet models for 30-day forecasts",
+        "Packaged forecast pipeline into reusable Python modules"
       ],
-      technologies: ["Python", "Pandas", "Prophet", "Power BI"],
-      dashboardUrl: "", // TODO: attach dashboard file
-      codeUrl: "",
+      technologies: ["Python", "Time Series", "ARIMA", "Prophet", "Forecasting"],
+      primaryCTA: { text: "View Notebook", link: "https://example.com/covid_notebook" },
+      secondaryCTA: { text: "GitHub", link: "https://github.com/your-repo" },
+      images: [
+        "covid_choropleth.png",
+        "covid_daily_cases.png",
+        "covid_forecast_plot.png"
+      ],
       badge: { text: "Time Series", variant: "secondary", color: "bg-purple-100 text-purple-800" },
       icon: "fas fa-virus",
       iconColor: "text-purple-600",
@@ -116,18 +175,25 @@ export default function Projects() {
       gradientTo: "to-purple-100"
     },
     {
-      id: "carrollton-calls",
-      title: "City of Carrollton Call Center Analytics",
+      id: "carrollton-analytics",
+      title: "CallCenter Insights: Carrollton Performance Analytics",
       subtitle: "Operational Dashboard & Recommendations",
-      description: "Analyzed call center data to identify trends and improve customer-service efficiency",
+      description:
+        "City officials needed clear metrics on call volume, wait times, and staffing gaps. CallCenter Insights merges multi-source logs, imputes missing data, and highlights peak periods to drive actionable staffing plans.",
       businessProblem: "City officials needed metrics on call volumes and staffing gaps to reduce unanswered calls and wait times.",
       achievements: [
-        "Imputed Missing Metrics",
-        "Interactive Power BI Dashboard",
-        "Actionable Staffing Plan"
+        "Imputed missing metrics (e.g., abandoned calls, service levels)",
+        "Interactive Power BI dashboards highlighting volume peaks and queue times",
+        "Generated staffing recommendations based on demand forecasting"
       ],
-      technologies: ["Power BI", "Python", "Excel"],
-      dashboardUrl: "", // TODO: attach dashboard file
+      technologies: ["Power BI", "Python", "Excel", "Operational Analytics"],
+      embedCode:
+        '<iframe width="800" height="450" src="https://app.powerbi.com/view?r=YOUR_EMBED_LINK" frameborder="0" allowFullScreen="true"></iframe>',
+      primaryCTA: {
+        text: "View Dashboard",
+        link: "https://app.powerbi.com/view?r=YOUR_EMBED_LINK"
+      },
+      secondaryCTA: { text: "GitHub", link: "https://github.com/your-repo" },
       badge: { text: "Operations", variant: "outline", color: "bg-indigo-100 text-indigo-800" },
       icon: "fas fa-city",
       iconColor: "text-indigo-600",
@@ -135,18 +201,22 @@ export default function Projects() {
       gradientTo: "to-indigo-100"
     },
     {
-      id: "court-disposition",
-      title: "Court Disposition Time Analysis",
+      id: "court-analysis",
+      title: "JusticeFlow: Court Disposition Timeline Insights",
       subtitle: "Kentucky 61st District",
-      description: "Examined felony and misdemeanor cases to highlight outliers and backlog issues for 2022",
+      description:
+        "Judicial leaders needed clarity on case processing delays to allocate resources and streamline schedules. JusticeFlow merges multi-source court records to visualize monthly disposition trends and flag invalid entries—enabling data-driven docket management.",
       businessProblem: "Judicial leaders needed insight into case processing delays to allocate resources and improve scheduling.",
       achievements: [
-        "Merged Multi-Source Data",
-        "Monthly Disposition Visuals",
-        "Identified 4% Invalid Records"
+        "Merged multi-source court records into a unified dataset",
+        "Visualized monthly disposition delays to highlight backlog peaks",
+        "Identified and flagged 4% invalid records for data quality improvement"
       ],
-      technologies: ["Excel", "Power BI", "Python"],
-      dashboardUrl: "", // TODO: attach dashboard file
+      technologies: ["Excel", "Power BI", "Python", "Data Quality", "Process Analytics"],
+      embedCode:
+        '<iframe width="100%" height="300" src="https://app.powerbi.com/view?r=YOUR_EMBED_LINK" frameborder="0" allowFullScreen></iframe>',
+      primaryCTA: { text: "View Dashboard", link: "https://app.powerbi.com/view?r=YOUR_EMBED_LINK" },
+      secondaryCTA: { text: "GitHub", link: "https://github.com/your-repo" },
       badge: { text: "Analytics", variant: "outline", color: "bg-gray-100 text-gray-800" },
       icon: "fas fa-balance-scale",
       iconColor: "text-gray-600",
@@ -163,20 +233,83 @@ export default function Projects() {
     }
   };
 
-  const renderProjectDemo = (project: Project) => (
-    <div className="w-full">
-      <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-        <h4 className="font-semibold text-slate-800 mb-4">Prediction Accuracy</h4>
-        <p className="text-5xl font-bold text-blue-600">{accuracy[project.id]}%</p>
-      </div>
+  const renderProjectDemo = (project: Project) => {
+    if (project.embedCode) {
+      return (
+        <div
+          className="w-full"
+          dangerouslySetInnerHTML={{ __html: project.embedCode }}
+        />
+      );
+    }
+
+    if (project.images && project.images.length > 0) {
+      return (
+        <div className="w-full grid sm:grid-cols-2 gap-4 place-items-center">
+          {project.images.map((img) => (
+            <motion.img
+              key={img}
+              src={require(`../resources/${img}`)}
+              alt={img}
+              className="rounded-lg shadow-lg max-h-60 w-full object-contain"
+              whileHover={{ scale: 1.05 }}
+            />
+          ))}
+        </div>
+      );
+    }
+
+    if (project.modelPerformance) {
+      return (
+        <div className="w-full flex flex-col items-center text-center space-y-4">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full">
+            <h4 className="font-semibold text-slate-800 mb-2">Model Performance</h4>
+            <ul className="text-sm space-y-1">
+              {project.modelPerformance.map((m) => (
+                <li key={m.model}>{`${m.model}: ${m.accuracy}`}</li>
+              ))}
+            </ul>
+          </div>
+          {project.previewUrl && (
+            <iframe
+              src={project.previewUrl}
+              className="rounded-lg shadow-lg w-full h-64"
+            ></iframe>
+          )}
+        </div>
+      );
+    }
+
+    if (project.topRiskFactors) {
+      return (
+        <div className="w-full flex flex-col items-center text-center space-y-4">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full">
+            <h4 className="font-semibold text-slate-800 mb-2">Model Accuracy Comparison</h4>
+            <ul className="text-sm space-y-1 mb-2">
+              {project.modelPerformance?.map((m) => (
+                <li key={m.model}>{`${m.model}: ${m.accuracy}`}</li>
+              ))}
+            </ul>
+            <h5 className="font-semibold text-slate-800 mt-4">Top Risk Factors</h5>
+            <ul className="text-sm space-y-1">
+              {project.topRiskFactors.map((r) => (
+                <li key={r.factor}>{`${r.factor}: ${r.value}`}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+
+    return (
       <motion.img
         src={DashboardImg}
         alt={`${project.title} dashboard`}
-        className="rounded-lg mt-6 w-full h-48 object-cover shadow-lg"
+        className="rounded-lg w-full h-48 object-cover shadow-lg"
         whileHover={{ scale: 1.05 }}
       />
-    </div>
-  );
+    );
+  };
 
   return (
     <section className="py-20 gradient-bg">
@@ -224,18 +357,18 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    {/* Key Achievement Box */}
-                    {project.id === "afghanistan-energy" && (
+                    {/* Dynamic callouts */}
+                    {project.keyOutcome && (
                       <div className="bg-green-50 p-4 rounded-lg mb-6">
-                        <h4 className="font-semibold text-green-800 mb-2">Key Achievement</h4>
-                        <p className="text-green-700 text-sm">Documented 96% improvement in electricity access (1.73% to 97.71%) supporting $2.3B in development funding decisions</p>
+                        <h4 className="font-semibold text-green-800 mb-2">Key Outcome</h4>
+                        <p className="text-green-700 text-sm">{project.keyOutcome}</p>
                       </div>
                     )}
 
-                    {project.id === "credit-risk" && (
+                    {project.keyMetric && (
                       <div className="bg-red-50 p-4 rounded-lg mb-6">
-                        <h4 className="font-semibold text-red-800 mb-2">Model Performance</h4>
-                        <p className="text-red-700 text-sm">Achieved F1-score of 0.85, representing 11.6% improvement over baseline logistic regression model</p>
+                        <h4 className="font-semibold text-red-800 mb-2">Key Metric</h4>
+                        <p className="text-red-700 text-sm">{project.keyMetric}</p>
                       </div>
                     )}
 
@@ -252,19 +385,27 @@ export default function Projects() {
                     <div className="flex flex-wrap gap-4">
                       <Button
                         variant="outline"
-                        onClick={() => openUrl(project.dashboardUrl ?? '')}
+                        onClick={() =>
+                          openUrl(
+                            project.primaryCTA?.link ?? project.dashboardUrl ?? ''
+                          )
+                        }
                         className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
                       >
                         <i className="fas fa-file-alt mr-2"></i>
-                        View Report
+                        {project.primaryCTA?.text ?? 'View Report'}
                       </Button>
                       <Button
                         variant="outline"
-                        onClick={() => openUrl(project.codeUrl ?? '')}
+                        onClick={() =>
+                          openUrl(
+                            project.secondaryCTA?.link ?? project.codeUrl ?? ''
+                          )
+                        }
                         className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
                       >
                         <i className="fab fa-github mr-2"></i>
-                        GitHub
+                        {project.secondaryCTA?.text ?? 'GitHub'}
                       </Button>
                     </div>
                   </div>

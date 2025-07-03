@@ -221,6 +221,19 @@ import yourImage from "@assets/your-image.jpg";
 // Then use: src={yourImage}
 ```
 
+For the portfolio's project cards, several placeholder images are referenced in
+`client/src/components/Projects.tsx`. Add the corresponding PNG files to
+`client/src/resources/` using these exact names:
+
+- `afg_access_trend.png`
+- `afg_correlation.png`
+- `covid_choropleth.png`
+- `covid_daily_cases.png`
+- `covid_forecast_plot.png`
+
+These files are intentionally omitted from the repository, so you'll need to
+drop them into the folder manually before running the site.
+
 ## 🎯 Section-Specific Customization
 
 ### Adding New Projects
