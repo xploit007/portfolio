@@ -191,7 +191,7 @@ const courseWorkUTD: CourseWork[] = [
                       REVA University, Bengaluru, India
                     </p>
                     <p className="text-sm text-slate-600 mb-1">
-                      August&nbsp;2019&nbsp;–&nbsp;May&nbsp;2023
+                      August&nbsp;2018&nbsp;–&nbsp;May&nbsp;2022
                     </p>
                     {/* <div className="flex items-center text-sm text-slate-600">
                       <i className="fas fa-map-marker-alt mr-2" />
