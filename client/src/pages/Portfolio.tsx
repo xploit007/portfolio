@@ -8,7 +8,7 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-import ChatBot from "@/components/ChatBot";
+// import ChatBot from "@/components/ChatBot";
 
 export default function Portfolio() {
   useEffect(() => {
@@ -122,8 +122,8 @@ export default function Portfolio() {
         </div>
       </footer>
       
-      Floating Chatbot - Expandable chat interface for portfolio assistance
-      <ChatBot />
+      {/* Floating Chatbot - Expandable chat interface for portfolio assistance
+      <ChatBot /> */}
     </div>
   );
 }
