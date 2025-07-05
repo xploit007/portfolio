@@ -122,7 +122,7 @@ export default function Portfolio() {
         </div>
       </footer>
       
-      {/* Floating Chatbot - Expandable chat interface for portfolio assistance */}
+      Floating Chatbot - Expandable chat interface for portfolio assistance
       <ChatBot />
     </div>
   );
