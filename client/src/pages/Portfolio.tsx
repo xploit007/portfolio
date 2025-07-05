@@ -78,7 +78,7 @@ export default function Portfolio() {
       <footer className="bg-slate-900 text-white py-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h3 className="text-2xl font-bold mb-4">Mallikarjun Gudumagatte Nagaraja</h3>
-          <p className="text-gray-300 mb-6">Data Story Teller</p>
+          <p className="text-gray-300 mb-6">Data Story Teller | DataTellsStorySells</p>
           
           <div className="flex justify-center space-x-6 mb-8">
   <a
