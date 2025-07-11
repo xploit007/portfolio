@@ -29,6 +29,7 @@ interface Project {
   keyMetric?: string;
   modelPerformance?: { model: string; accuracy: string }[];
   previewUrl?: string;
+  demoUrl?: string;
 }
 
 export default function Projects() {
@@ -52,6 +53,7 @@ export default function Projects() {
       ],
       technologies: ["Python", "Hugging Face", "Streamlit", "NLP", "Real-Time Analytics"],
       secondaryCTA: { text: "GitHub", link: "https://github.com/xploit007/Credit-Risk" },
+      demoUrl: "https://xploit-emotion-detection.streamlit.app/",
       badge: { text: "Demo", variant: "default", color: "bg-green-100 text-green-800" },
       icon: "fas fa-brain",
       iconColor: "text-blue-600",
@@ -329,7 +331,15 @@ export default function Projects() {
                           </Badge>
                         ))}
                       </div>
-                      <div>
+                      <div className="flex gap-4">
+                        {proj.demoUrl && (
+                          <Button
+                            onClick={() => window.open(proj.demoUrl!, "_blank")}
+                            className="bg-green-600 text-white hover:bg-green-700"
+                          >
+                            Try Demo
+                          </Button>
+                        )}
                         {proj.secondaryCTA && (
                           <Button
                             variant="outline"
