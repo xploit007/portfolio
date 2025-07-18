@@ -115,7 +115,6 @@ const downloadLR = () => {
               className="text-lg text-slate-600 mb-10 leading-relaxed"
             >
               I play with data and translate complex datasets into clear, stakeholder-ready stories,
-              <br />
               engineer ETL pipelines, fine-tune ML algorithms, and craft interactive Power BI dashboards that
               empower non-technical audiences to make data-driven decisions.
             </motion.p>
