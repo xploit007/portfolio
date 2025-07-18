@@ -145,7 +145,21 @@ const downloadLR = () => {
                 </Button>
               </div> */}
 
-              {/* second row — w-full makes it span the combined width above */}
+              {/* LinkedIn profile button */}
+              <Button
+                asChild
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full whitespace-normal"
+              >
+                <a
+                  href="https://www.linkedin.com/in/mallikarjungn/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-linkedin mr-2" />
+                  Connect on LinkedIn
+                </a>
+              </Button>
+
               <Button
                 onClick={downloadResume}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full whitespace-normal"
@@ -153,7 +167,7 @@ const downloadLR = () => {
                 <i className="fas fa-download mr-2" />
                 Download Resume
               </Button>
-              {/* second row — w-full makes it span the combined width above */}
+
               <Button
                 onClick={downloadLR}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-base font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full whitespace-normal"
