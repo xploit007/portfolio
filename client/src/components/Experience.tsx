@@ -49,7 +49,7 @@ export default function Experience() {
     },
     {
       id: "innover",
-      title: "Associate Analyst",
+      title: "Associate Developer – Business Intelligence",
       company: "Innover Digital",
       period: "April 2022 - June 2023",
       description:
