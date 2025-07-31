@@ -32,8 +32,8 @@ export default function Contact() {
       Icon: FaEnvelope,
       iconBg: "bg-blue-600",
       title: "Email",
-      value: "Mallikarjun.Gudum@gmail.com",
-      url: "mailto:Mallikarjun.Gudum@gmail.com",
+      value: "Gudumagatte.Mallikarjun@gmail.com",
+      url: "mailto:Gudumagatte.Mallikarjun@gmail.com",
     },
     {
       Icon: FaLinkedin,
